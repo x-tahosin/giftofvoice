@@ -122,7 +122,7 @@ To prevent deepfake misuse and protect donor privacy:
 
 1. **Clone repository:**
    ```bash
-   git clone https://github.com/your-username/giftofvoice.git
+   git clone https://github.com/x-tahosin/giftofvoice.git
    cd giftofvoice
    ```
 

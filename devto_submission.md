@@ -35,7 +35,7 @@ GiftOfVoice is an open-source, humanitarian web platform that combines **Google 
 
 ### 🚀 Live Interactive Application
 - **Live URL:** [https://giftofvoice.vercel.app](https://giftofvoice.vercel.app) *(or your deployed link)*
-- **GitHub Repository:** [https://github.com/tahosin/giftofvoice](https://github.com/tahosin/giftofvoice)
+- **GitHub Repository:** [https://github.com/x-tahosin/giftofvoice](https://github.com/x-tahosin/giftofvoice)
 
 ### ⚡ 1-Click Judge Showcase Scenarios
 
@@ -62,7 +62,7 @@ To ensure judges on any device or connection speed experience instant results, G
 
 ## 💻 Code
 
-**Repository Link:** [https://github.com/tahosin/giftofvoice](https://github.com/tahosin/giftofvoice)
+**Repository Link:** [https://github.com/x-tahosin/giftofvoice](https://github.com/x-tahosin/giftofvoice)
 
 The entire project is open-source under the MIT license, with full clean architecture, measurable WCAG 2.1 AAA accessibility compliance, and unified Express + Vite production serving.
 
