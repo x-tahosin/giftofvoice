@@ -115,7 +115,11 @@ if (fs.existsSync(distPath)) {
 }
 
 // Start Server
-app.listen(PORT, () => {
-  console.log(`GiftOfVoice Express server running on port ${PORT}`);
-  console.log(`API Health: http://localhost:${PORT}/api/health`);
-});
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`GiftOfVoice Express server running on port ${PORT}`);
+    console.log(`API Health: http://localhost:${PORT}/api/health`);
+  });
+}
+
+export default app;

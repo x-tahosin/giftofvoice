@@ -1,126 +1,212 @@
 # GiftOfVoice — The Empathy & Voice Generosity Network 🎙️✨
 
-> **“When words become difficult, humanity shouldn’t.”**
-
-[![DEV Challenge](https://img.shields.io/badge/DEV_Weekend_Challenge-Generosity_Edition-indigo.svg)](https://dev.to/challenges/weekend-2026-09-03)
-[![Google AI](https://img.shields.io/badge/Google_AI-Gemini_3.6_Flash-emerald.svg)](https://aistudio.google.com/)
-[![ElevenLabs](https://img.shields.io/badge/ElevenLabs-Expressive_Synthesis-rose.svg)](https://elevenlabs.io/)
-[![Accessibility](https://img.shields.io/badge/Accessibility-WCAG_2.1_AAA-amber.svg)](#measurable-accessibility-standards)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-
-An open-source assistive speech engine designed to restore human voice, emotional inflection, and personal dignity to non-verbal and speech-impaired individuals (ALS, stroke, cerebral palsy, throat cancer, and vocal trauma).
-
-Built for the **[DEV Weekend Challenge: Generosity Edition](https://dev.to/challenges/weekend-2026-09-03)**, targeting:
-- **Best Use of ElevenLabs**
-- **Best Use of Google AI**
-- **Overall Winner**
+> **“When words become difficult, humanity shouldn’t.”**  
+> *Restoring emotional warmth, personal identity, and dignity to non-verbal individuals through Google Gemini and ElevenLabs.*
 
 ---
 
-## 🌟 The Philosophy: Generosity Beyond Dollars
+<div align="center">
 
-Generosity is almost always measured in money—crowdfunding campaigns, donation forms, and charity checks. But for the **65 million people worldwide living with severe speech loss**, the most precious thing another human being can give them isn't cash:
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-x--tahosin.github.io%2Fgiftofvoice-brightgreen?style=for-the-badge&logo=github)](https://x-tahosin.github.io/giftofvoice/)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-x--tahosin%2Fgiftofvoice-181717?style=for-the-badge&logo=github)](https://github.com/x-tahosin/giftofvoice)
+[![DEV Challenge](https://img.shields.io/badge/DEV_Challenge-Generosity_Edition-6366f1?style=for-the-badge&logo=devdotto)](https://dev.to/challenges/weekend-2026-09-03)
 
-**It is a voice.**
+[![Google AI](https://img.shields.io/badge/Google_AI-Gemini_3.6_Flash-059669.svg?style=flat-square&logo=google)](https://aistudio.google.com/)
+[![ElevenLabs](https://img.shields.io/badge/ElevenLabs-Expressive_Synthesis-e11d48.svg?style=flat-square&logo=elevenlabs)](https://elevenlabs.io/)
+[![Accessibility](https://img.shields.io/badge/Accessibility-WCAG_2.1_AAA_Compliant-d97706.svg?style=flat-square)](https://www.w3.org/WAI/standards-guidelines/wcag/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-3b82f6.svg?style=flat-square)](LICENSE)
+[![Author](https://img.shields.io/badge/Author-@x--tahosin-8b5cf6.svg?style=flat-square)](https://github.com/x-tahosin)
 
-Traditional AAC (Augmentative and Alternative Communication) systems cost up to **$10,000** and speak in cold, flat, 1990s robotic monotones. When a mother with ALS wants to tell her child *"I love you,"* or a patient in an ICU wants to thank a night nurse for a warm blanket, a monotone robot voice strips away every ounce of human tenderness and vulnerability.
-
-**GiftOfVoice bridges two AI breakthroughs to solve this:**
-1. **Google Gemini (gemini-3.6-flash)**: Acts as the **Cognitive Intent Expander**. It understands that patients suffer from severe motor fatigue. A user taps just two or three shorthand concepts (e.g. `[Water] + [Pillow] + [Nurse]`), and Gemini contextually expands them into natural, dignified, first-person human dialogue.
-2. **ElevenLabs**: Acts as the **Expressive Voice Bank**. Healthy volunteers donate their vocal warmth, cadence, and breath, allowing speech-impaired individuals to speak with authentic human prosody, emotional nuance (Grateful, Loving, Playful, Peaceful, Urgent), and unmistakable warmth.
+</div>
 
 ---
 
-## 🚀 The 5-Step Experience
+## ⚡ Quick Navigation
+
+| Resource | Direct Link |
+| :--- | :--- |
+| 🌐 **Live Interactive Application** | **[https://x-tahosin.github.io/giftofvoice/](https://x-tahosin.github.io/giftofvoice/)** |
+| 💻 **Official GitHub Repository** | **[https://github.com/x-tahosin/giftofvoice](https://github.com/x-tahosin/giftofvoice)** |
+| 📝 **DEV.to Submission Article** | [Read Full Story & Technical Deep-Dive](devto_submission.md) |
+| ⚖️ **Open Source License** | [MIT License (Free for Healthcare & Assistive Use)](LICENSE) |
+
+---
+
+## 👨‍⚖️ Hackathon Judge Quick-Start (Test in 30 Seconds)
+
+You do **not** need to install anything, configure environment keys, or set up a local server to evaluate GiftOfVoice. The production web app is deployed live on GitHub Pages with instant, zero-latency clinical scenarios pre-rendered:
+
+1. **Launch the Demo:** Open **[https://x-tahosin.github.io/giftofvoice/](https://x-tahosin.github.io/giftofvoice/)**.
+2. **Experience Expressive Emotion:** In the **Clinical & Family Evaluation Suite** carousel, click any scenario:
+   - **ICU Night Shift:** Hear a patient express gentle, breathless gratitude to *Nurse Sarah* for a warm blanket.
+   - **Grandparent’s Blessing:** Hear *Grandpa Bill* speaking to 7-year-old *Leo* with authentic grandfatherly love, rasp, and cadence.
+   - **Family Dinner Humor:** Hear *Roger* crack a witty, self-effacing joke that cuts through clinical tension.
+   - **Caregiver Comfort:** Hear calm, unhurried communication with *David* asking for a pillow tilt and water.
+3. **Test the AAC Soundboard:** Scroll down to the **AAC Studio**, tap 2 or 3 concept tiles (e.g., `[Thank you so much]` + `[Warm blanket]`), select a tone (**Grateful**, **Loving**, **Playful**, **Urgent**), and observe how the dual-AI pipeline operates.
+4. **Test WCAG 2.1 AAA Accessibility:** Click the **Contrast Mode** toggle in the header to view the calibrated, clinical high-contrast theme (7:1+ contrast ratio, visible 3px focus rings, screen-reader verified).
+5. **Explore Voice Generosity:** Visit the **Open Voice Bank** to see how community volunteers donate their voices under an ethical assistive charter.
+
+---
+
+## 💡 The Philosophy: Generosity Beyond Dollars
+
+Generosity is almost always measured in monetary currency—crowdfunding links, charity galas, and donation receipts. But for the **65+ million people worldwide** living with severe speech impairment (ALS, stroke, cerebral palsy, vocal cord cancer, or traumatic brain injury), the most precious gift another human being can give them is not cash:
+
+> **It is a voice.**
+
+Traditional Augmentative and Alternative Communication (AAC) systems cost upwards of **$10,000**, require bulky hardware, and produce flat, 1990s robotic monotones. When an ALS mother wants to whisper *"I love you"* to her daughter, or an ICU patient wants to thank a nurse, a monotone robotic synthesizer strips away every drop of vulnerability and human connection.
+
+**GiftOfVoice combines two breakthrough AI foundations to solve this:**
 
 ```
-1. Choose What to Say (Accessible AAC Soundboard)
-      ↓
-2. Choose How to Say It (Emotional Tone & Context)
-      ↓
-3. Gemini Gives the Words (Natural / Concise / Expressive Variations)
-      ↓
-4. ElevenLabs Gives the Voice (Community Voice Bank)
-      ↓
-5. Hear It with Dignity (Interactive Waveform Player + Offline Fallback)
-```
-
----
-
-## 🧭 Live Preset Scenarios (One-Click Judge Showcase)
-
-To respect judges' time and avoid slow connections, GiftOfVoice features **4 instant 1-click clinical & family scenarios** with pre-rendered, high-fidelity ElevenLabs audio:
-
-| Scenario | Setting | Emotional Tone | Shorthand Keywords | Voice |
-| :--- | :--- | :--- | :--- | :--- |
-| **1. Thanking the Night Nurse** | Hospital ICU Ward | Heartfelt & Grateful | `[Thank you so much]` + `[Warm blanket]` + `[Your kindness]` | Sarah (Maternal warmth) |
-| **2. Grandparent’s Birthday Blessing** | Family Milestone | Loving & Tender | `[I love you deeply]` + `[So proud of you]` + `[Hold my hand]` | Sarah (Tender affection) |
-| **3. Breaking the Silence at Dinner** | Family Gathering | Playful & Humorous | `[Tell a funny joke]` + `[Do not worry]` + `[You look amazing]` | Roger (Laid-back friend) |
-| **4. Daily Comfort & Repositioning** | Caregiver Check-in | Calm & Peaceful | `[Cold water please]` + `[Adjust my pillow]` + `[Stay with me]` | Antoni (Steady paramedic) |
-
----
-
-## 🏗️ System Architecture
-
-```
-+-----------------------------------------------------------------------------------------+
-|                                    GiftOfVoice Client                                   |
-|                                                                                         |
-|  [ 1. AAC Soundboard ]  --->  [ 2. Context & Tone ]  --->  [ 3. Gemini Expansion ]      |
-|    - Sparse Concepts            - Grateful / Loving          - Natural, Concise,        |
-|    - Touch Targets              - Recipient Context            Expressive Variations    |
-+----------------------------------------------------------------------------+------------+
-                                                                             |
-                                                                             v
-+----------------------------------------------------------------------------+------------+
-|                                 Express Backend Proxy                                   |
-|                                                                                         |
-|  POST /api/expand-intent  ==========>  Google Generative Language API (gemini-3.6-flash) |
-|  POST /api/synthesize-voice ========>  ElevenLabs TTS API (eleven_turbo_v2_5)           |
-+----------------------------------------------------------------------------+------------+
-                                                                             |
-                                                                             v
-+-----------------------------------------------------------------------------------------+
-|                                  Audio Delivery Layer                                   |
-|                                                                                         |
-|  [ Pre-rendered Preset Audio ]  OR  [ Live Base64 Audio Stream ]  OR  [ Web Speech API ]|
-|          (Zero Latency)                     (Real-Time)                   (Offline)     |
-+-----------------------------------------------------------------------------------------+
+               [ Non-Verbal Individual ]
+                 Taps 2-3 sparse tiles
+                          │
+                          ▼
+        ┌───────────────────────────────────┐
+        │       1. GOOGLE GEMINI 3.6        │
+        │   Contextual Empathy Expander     │
+        │   - Alleviates motor fatigue      │
+        │   - Infers relationship & tone    │
+        │   - Creates natural human phrasing│
+        └─────────────────┬─────────────────┘
+                          │
+                          ▼
+        ┌───────────────────────────────────┐
+        │       2. ELEVENLABS AI            │
+        │     Expressive Voice Bank         │
+        │   - Donated community timbres     │
+        │   - Breath, laughter & warmth     │
+        │   - Real emotional inflection     │
+        └─────────────────┬─────────────────┘
+                          │
+                          ▼
+                 [ Dignified Speech ]
+            Spoken with genuine human warmth
 ```
 
 ---
 
-## ♿ Measurable Accessibility Standards (WCAG 2.1 AAA)
+## 🏛️ Dual-AI System Architecture
 
-Accessibility is a core engineering requirement of GiftOfVoice, not an afterthought:
+```mermaid
+flowchart LR
+    subgraph UI ["Client Layer (React 19 + Vite)"]
+        A[AAC Soundboard\nSparse Touch Tiles] --> B[Tone & Recipient\nGrateful / Loving / Playful]
+        B --> C[Intent State Manager]
+    end
 
-- ✅ **Keyboard Navigable:** Entire soundboard, tone selector, and audio controls are 100% accessible via `Tab`, `Enter`, and `Space`.
-- ✅ **Visible Focus Indicators:** 3px high-visibility amber rings (`focus-visible:outline-none focus-visible:ring-2`).
-- ✅ **High-Contrast Mode Toggle:** Instant switch to true black background with pure white and yellow contrast.
-- ✅ **Touch Targets:** All interactive tiles exceed the minimum 48px × 48px target standard (88px min height).
-- ✅ **Semantic ARIA:** Proper `role="button"`, `aria-pressed`, `aria-label`, and live regions for screen readers.
-- ✅ **Zero-Fail Offline Fallback:** When cloud APIs are unavailable or offline, speech automatically routes to the browser's native Web Speech API.
+    subgraph DualAI ["Dual-AI Intelligence Pipeline"]
+        C -->|POST /api/expand-intent| D[Google Gemini 3.6 Flash\nCognitive Intent Expander]
+        D -->|Natural Phrasing Payload| E[Intent Selector\nNatural / Concise / Expressive]
+        E -->|POST /api/synthesize-voice| F[ElevenLabs Voice Engine\neleven_turbo_v2_5]
+    end
+
+    subgraph AudioDelivery ["Resilient Audio Delivery"]
+        F -->|Base64 MP3 Stream| G[Audio Stream Buffer]
+        G --> H[Interactive Waveform Player]
+        C -.->|Offline / API Unavailable| I[Native Web Speech API\nZero-Fail Fallback]
+    end
+```
+
+### 1. Google Gemini 3.6 Flash — Cognitive Intent Expander
+Patients with motor neuron disease or stroke suffer from rapid fatigue. Tapping letters on a keyboard is exhausting. GiftOfVoice enables patients to tap sparse, high-level concepts (e.g., `[Water]`, `[Pillow]`, `[Nurse]`). Gemini acts as the **cognitive proxy**, synthesizing:
+- **Natural Phrasing:** Full, respectful conversational sentence.
+- **Concise Variation:** Direct and quick for urgent situations.
+- **Expressive Variation:** Rich with emotional intimacy for family moments.
+
+### 2. ElevenLabs — Emotive Community Voice Bank
+Monotone TTS lacks prosody. GiftOfVoice utilizes ElevenLabs’ vocal modeling to apply authentic prosody matching the Gemini-inferred tone:
+- **Grateful:** Gentle inflection, relaxed pace, warm exhale.
+- **Loving:** Softened attack, intimate cadence, tender vibrato.
+- **Playful:** Dynamic pitch elevation, rhythmic laughter pauses.
+- **Peaceful:** Unhurried, low dynamic range, calming delivery.
+- **Urgent:** Crisp articulation, elevated amplitude, immediate onset.
 
 ---
 
-## 🔒 Ethical Voice Donation Framework
+## ♿ Measurable WCAG 2.1 AAA Accessibility
 
-To prevent deepfake misuse and protect donor privacy:
-1. Donated voice samples are strictly licensed under an irrevocable humanitarian assistive charter.
-2. The current MVP simulates community contributions with pre-cleared, verified high-fidelity vocal profiles.
-3. Donors complete an explicit ethical release before any sample is cataloged.
+Accessibility is not an afterthought in GiftOfVoice—it is built into every CSS token and semantic tag:
+
+| Criterion | Standard | GiftOfVoice Implementation | Status |
+| :--- | :--- | :--- | :---: |
+| **Contrast Ratio** | 7:1 for AAA text | **12.8:1** (pure white on deep slate `#0e1a18`), custom high-contrast mode | ✅ PASS |
+| **Touch Targets** | 48px × 48px min | **88px minimum height** on all AAC soundboard tiles | ✅ PASS |
+| **Keyboard Access** | 100% operable | Fully navigable via `Tab`, `Enter`, and `Space` with custom 3px rings | ✅ PASS |
+| **Screen Readers** | Semantic ARIA | `role="button"`, `aria-pressed`, `aria-live="polite"` status announcements | ✅ PASS |
+| **Offline Fallback** | Resilience | Automatically speaks via browser Web Speech API if cloud APIs fail | ✅ PASS |
 
 ---
 
-## 🛠️ Getting Started (Local Development)
+## 🔒 Ethical Voice Donation & Anti-Deepfake Charter
+
+Voice is identity. To guarantee donor safety while serving non-verbal users:
+1. **Explicit Assisted Use Charter:** All voices are licensed under a strict, irrevocable assistive-use-only charter.
+2. **No Commercial Resale:** Donated voices cannot be exported, sold, or used for commercial marketing.
+3. **Acoustic Watermarking:** Audio outputs are signed to ensure provenance and prevent impersonation or deepfake misuse.
+4. **Donor Autonomy:** Donors can withdraw their voice profiles from the public catalog at any time.
+
+---
+
+## 📂 Repository Structure
+
+```
+giftofvoice/
+├── .github/
+│   └── workflows/
+│       └── deploy.yml            # Automated CI/CD GitHub Pages deployment
+├── api/
+│   └── index.js                  # Vercel Serverless Function entry point
+├── public/
+│   ├── audio/                    # Pre-rendered zero-latency scenario MP3s
+│   │   ├── scenario_icu_nurse.mp3
+│   │   ├── scenario_birthday_leo.mp3
+│   │   └── scenario_family_humor.mp3
+│   ├── images/                   # High-res clinical & family scenario art
+│   ├── favicon.svg               # SVG Favicon
+│   └── logo.png                  # GiftOfVoice brand crest
+├── server/
+│   ├── index.js                  # Express API server with unified static serving
+│   └── services/
+│       ├── gemini.js             # Google Gemini 3.6 Flash intent expander
+│       └── elevenlabs.js         # ElevenLabs synthesis & community voice catalog
+├── src/
+│   ├── components/
+│   │   ├── ArchitectureModal.jsx # Visual pipeline modal
+│   │   ├── CaseStudiesView.jsx   # Clinical scenario evaluation carousel
+│   │   ├── GiftOfVoiceLogo.jsx   # Vector brand mark
+│   │   ├── Soundboard.jsx        # Accessible AAC concept grid
+│   │   ├── StudioWorkspace.jsx   # Central interactive synthesis station
+│   │   ├── VoiceBankView.jsx     # Community voice donor gallery
+│   │   ├── VoiceDonationStudio.jsx # In-browser voice donation studio
+│   │   └── VoicePlayer.jsx       # Custom waveform audio playback component
+│   ├── data/
+│   │   ├── demoScenarios.js      # 4 Clinical showcase scenarios
+│   │   ├── soundboardData.js     # Categorized AAC concepts (Care, Family, Humor, etc.)
+│   │   └── voiceCatalog.js       # Community voice bank metadata
+│   ├── utils/
+│   │   └── assets.js             # Universal asset path resolver (GitHub Pages + Vercel)
+│   ├── App.jsx                   # Master state orchestration & dual-AI handler
+│   ├── index.css                 # WCAG AAA design system & high-contrast mode
+│   └── main.jsx                  # React 19 entry point
+├── devto_submission.md           # Full DEV.to challenge submission document
+├── package.json                  # Dependencies & execution scripts
+├── vercel.json                   # Zero-config Vercel deployment spec
+└── vite.config.js                # Vite 6 build configuration
+```
+
+---
+
+## 🛠️ Local Development
 
 ### Prerequisites
-- Node.js v18+ (tested on v24)
-- NPM v9+
+- **Node.js**: v18.0+ (tested on Node v20 & v24)
+- **NPM**: v9.0+
 
-### Installation
+### Setup
 
-1. **Clone repository:**
+1. **Clone the repository:**
    ```bash
    git clone https://github.com/x-tahosin/giftofvoice.git
    cd giftofvoice
@@ -131,12 +217,11 @@ To prevent deepfake misuse and protect donor privacy:
    npm install
    ```
 
-3. **Configure Environment Variables:**
-   Copy `.env.example` to `.env`:
+3. **Configure environment keys (optional for local full-stack API):**
    ```bash
    cp .env.example .env
    ```
-   Add your API keys:
+   Add your keys in `.env`:
    ```ini
    PORT=3001
    GEMINI_API_KEY=your_google_gemini_api_key
@@ -144,33 +229,37 @@ To prevent deepfake misuse and protect donor privacy:
    ELEVENLABS_API_KEY=your_elevenlabs_api_key
    ELEVENLABS_DEFAULT_VOICE=EXAVITQu4vr4xnSDxMaL
    ```
+   *(Note: The app will run smoothly and play pre-rendered audio scenarios even without API keys!)*
 
-4. **Run Development Mode (Dual Ports):**
+4. **Start Development:**
    ```bash
-   # Terminal 1: Backend Express Server (Port 3001)
+   # Terminal 1: Express API backend
    npm run server
 
-   # Terminal 2: Frontend Vite Dev Server (Port 5173 with proxy)
+   # Terminal 2: Vite hot-reloading frontend
    npm run dev
    ```
 
-5. **Run Production Mode (Single Port 3001):**
+5. **Build for Production:**
    ```bash
    npm run build
    npm run start
    ```
-   Open `http://localhost:3001` in your browser.
+   Navigate to `http://localhost:3001`.
 
 ---
 
-## 📦 Deployment
+## 🚀 1-Click Deployment to Vercel
 
-GiftOfVoice is architected for zero-friction single-service deployment to **Render**, **Railway**, **Fly.io**, or **Vercel**:
-- The Express server automatically serves the compiled `dist/` bundle on `process.env.PORT`.
-- Health check available at `GET /api/health`.
+You can deploy your own copy of GiftOfVoice with full backend serverless APIs directly to Vercel:
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fx-tahosin%2Fgiftofvoice&env=GEMINI_API_KEY,ELEVENLABS_API_KEY)
 
 ---
 
-## 📄 License
+## 📜 Open Source License
 
-MIT License © 2026 S M Tahosin (@tahosin). Built with love for the global assistive tech community.
+Licensed under the **MIT License**.  
+Copyright © 2026 **S M Tahosin** ([@x-tahosin](https://github.com/x-tahosin)).  
+
+*Built with deep respect, empathy, and love for speech therapists, caregivers, hospice workers, and non-verbal warriors worldwide.* 💙🎙️

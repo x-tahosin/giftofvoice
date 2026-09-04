@@ -1,3 +1,5 @@
+import { getAssetUrl } from '../utils/assets.js';
+
 export const COMMUNITY_VOICE_CATALOG = [
   {
     id: 'EXAVITQu4vr4xnSDxMaL',
@@ -22,7 +24,7 @@ export const COMMUNITY_VOICE_CATALOG = [
     donorStory: 'Donated his voice so aging grandparents with ALS or stroke can speak to their grandchildren with genuine grandfatherly warmth.',
     bestFor: 'Grandparent blessings, bedtime stories, affectionate family advice',
     sampleText: 'Happy birthday, my sweet little Leo! Come give grandpa a big hug... I love you to the moon and back, and I am so proud of you!',
-    audioUrl: '/audio/scenario_birthday_leo.mp3',
+    audioUrl: getAssetUrl('audio/scenario_birthday_leo.mp3'),
   },
   {
     id: 'CwhRBWXzGAHq8TQ4Fs17',
