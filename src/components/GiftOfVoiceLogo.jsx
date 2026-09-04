@@ -1,6 +1,9 @@
 import React from 'react';
+import { getAssetUrl } from '../utils/assets.js';
 
 export default function GiftOfVoiceLogo({ size = 42, className = '' }) {
+  const logoSrc = getAssetUrl('logo.png');
+
   return (
     <div 
       className={`gov-brand-logo ${className}`}
@@ -21,8 +24,17 @@ export default function GiftOfVoiceLogo({ size = 42, className = '' }) {
       aria-label="GiftOfVoice Logo"
     >
       <img
-        src="/logo.png"
+        src={logoSrc}
         alt="GiftOfVoice Logo"
+        onError={(e) => {
+          if (!e.target.dataset.triedFallback) {
+            e.target.dataset.triedFallback = 'true';
+            const cleanPath = window.location.pathname.endsWith('/') 
+              ? window.location.pathname 
+              : `${window.location.pathname}/`;
+            e.target.src = `${window.location.origin}${cleanPath}logo.png`;
+          }
+        }}
         style={{
           width: '100%',
           height: '100%',
