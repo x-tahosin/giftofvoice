@@ -251,10 +251,11 @@ button:focus-visible, a:focus-visible, input:not(.custom-concept-input):focus-vi
 .quick-preset-card,
 .case-tab-card,
 .donor-profile-card,
-.ascii-code-box {
+.ascii-code-box,
+.custom-concept-bar {
   opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(36px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
@@ -271,7 +272,8 @@ button:focus-visible, a:focus-visible, input:not(.custom-concept-input):focus-vi
 .quick-preset-card.is-revealed,
 .case-tab-card.is-revealed,
 .donor-profile-card.is-revealed,
-.ascii-code-box.is-revealed {
+.ascii-code-box.is-revealed,
+.custom-concept-bar.is-revealed {
   opacity: 1 !important;
   transform: translateY(0) !important;
 }
@@ -281,10 +283,13 @@ button:focus-visible, a:focus-visible, input:not(.custom-concept-input):focus-vi
 .stepper-nav-bar,
 .stepper-card-container,
 .carousel-outer-wrapper,
+.case-selector-strip,
+.quick-presets-container,
+.donor-card,
 .mic-studio-card {
   opacity: 0;
-  transform: scale(0.97) translateY(20px);
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scale(0.96) translateY(32px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
@@ -293,31 +298,38 @@ button:focus-visible, a:focus-visible, input:not(.custom-concept-input):focus-vi
 .stepper-nav-bar.is-revealed,
 .stepper-card-container.is-revealed,
 .carousel-outer-wrapper.is-revealed,
+.case-selector-strip.is-revealed,
+.quick-presets-container.is-revealed,
+.donor-card.is-revealed,
 .mic-studio-card.is-revealed {
   opacity: 1 !important;
   transform: scale(1) translateY(0) !important;
 }
 
-.scroll-reveal-left {
+.scroll-reveal-left,
+.studio-card-panel:first-child {
   opacity: 0;
-  transform: translateX(-24px);
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(-36px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
-.scroll-reveal-left.is-revealed {
+.scroll-reveal-left.is-revealed,
+.studio-card-panel:first-child.is-revealed {
   opacity: 1 !important;
   transform: translateX(0) !important;
 }
 
-.scroll-reveal-right {
+.scroll-reveal-right,
+.studio-card-panel:last-child {
   opacity: 0;
-  transform: translateX(24px);
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(36px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
-.scroll-reveal-right.is-revealed {
+.scroll-reveal-right.is-revealed,
+.studio-card-panel:last-child.is-revealed {
   opacity: 1 !important;
   transform: translateX(0) !important;
 }
