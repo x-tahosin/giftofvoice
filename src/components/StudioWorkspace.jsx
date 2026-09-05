@@ -466,13 +466,33 @@ export default function StudioWorkspace({
 
             <div style={{ alignSelf: 'flex-end' }}>
               <button
-                onClick={onExpandIntent}
-                disabled={isExpanding || selectedItems.length === 0}
+                onClick={onInstantSpeakSoundboard || onExpandIntent}
+                disabled={isExpanding || isSynthesizing || (!finalText && selectedItems.length === 0)}
                 className="btn-primary-glow"
                 style={{ padding: '10px 18px', fontSize: '0.84rem' }}
+                title="Generate speech and speak with chosen vocal timbre"
               >
-                <Sparkles size={15} />
-                <span>{isExpanding ? 'Expanding...' : 'Generate Speech'}</span>
+                {isExpanding ? (
+                  <>
+                    <RefreshCw size={15} className="animate-spin" />
+                    <span>Expanding...</span>
+                  </>
+                ) : isSynthesizing ? (
+                  <>
+                    <RefreshCw size={15} className="animate-spin" />
+                    <span>Synthesizing...</span>
+                  </>
+                ) : isPlaying ? (
+                  <>
+                    <Pause size={15} />
+                    <span>Pause Speech</span>
+                  </>
+                ) : (
+                  <>
+                    <Sparkles size={15} fill="currentColor" />
+                    <span>Generate Speech</span>
+                  </>
+                )}
               </button>
             </div>
           </div>
@@ -484,9 +504,23 @@ export default function StudioWorkspace({
                 <span style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--primary)' }}>
                   Preferred Phrasing (Gemini 3.6 Flash)
                 </span>
-                <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
-                  Tap any option to select
-                </span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  {selectedItems.length > 0 && (
+                    <button
+                      onClick={onExpandIntent}
+                      disabled={isExpanding}
+                      className="btn-outline"
+                      style={{ padding: '2px 8px', fontSize: '0.68rem', borderRadius: 'var(--radius-sm)' }}
+                      title="Re-run Gemini contextual expansion"
+                    >
+                      <RefreshCw size={11} className={isExpanding ? 'animate-spin' : ''} />
+                      <span>Regenerate Phrasings</span>
+                    </button>
+                  )}
+                  <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+                    Tap option to select
+                  </span>
+                </div>
               </div>
 
               {/* Natural */}

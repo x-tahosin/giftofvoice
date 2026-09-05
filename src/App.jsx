@@ -7,6 +7,7 @@ import StudioWorkspace from './components/StudioWorkspace';
 import VoiceBankView from './components/VoiceBankView';
 import { COMMUNITY_VOICE_CATALOG } from './data/voiceCatalog';
 import { DEMO_SCENARIOS } from './data/demoScenarios';
+import { expandIntentClient } from './utils/clientGeminiEngine';
 import { useScrollReveal } from './hooks/useScrollReveal';
 
 export default function App() {
@@ -65,11 +66,36 @@ export default function App() {
 
   const audioRef = useRef(null);
 
-  // Browser Web Speech API Fallback
+  // Browser Web Speech API Fallback (Resilient offline speech)
   const speakWithBrowserFallback = (textToSpeak) => {
     if (!('speechSynthesis' in window)) return;
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(textToSpeak);
+    const voices = window.speechSynthesis.getVoices();
+    if (voices && voices.length > 0) {
+      if (activeVoice?.gender?.toLowerCase() === 'female') {
+        const femaleVoice = voices.find(
+          (v) =>
+            v.name.toLowerCase().includes('female') ||
+            v.name.toLowerCase().includes('zira') ||
+            v.name.toLowerCase().includes('samantha') ||
+            v.name.toLowerCase().includes('karen')
+        );
+        if (femaleVoice) utterance.voice = femaleVoice;
+        utterance.pitch = 1.05;
+        utterance.rate = 0.92;
+      } else {
+        const maleVoice = voices.find(
+          (v) =>
+            v.name.toLowerCase().includes('male') ||
+            v.name.toLowerCase().includes('david') ||
+            v.name.toLowerCase().includes('george')
+        );
+        if (maleVoice) utterance.voice = maleVoice;
+        utterance.pitch = 0.92;
+        utterance.rate = 0.92;
+      }
+    }
     utterance.onstart = () => setIsPlaying(true);
     utterance.onend = () => setIsPlaying(false);
     utterance.onerror = () => setIsPlaying(false);
@@ -85,6 +111,7 @@ export default function App() {
 
     if (isPlaying) {
       audioRef.current.pause();
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
       setIsPlaying(false);
     } else {
       if (currentAudioUrl) {
@@ -127,34 +154,58 @@ export default function App() {
     }
   };
 
-  // Expand intent with Gemini 3.6 Flash
-  const handleExpandIntent = async () => {
-    if (selectedItems.length === 0) {
+  // Expand intent with Gemini 3.6 Flash (with client-side zero-latency fallback)
+  const handleExpandIntent = async (customKeywords = null) => {
+    const kws = customKeywords || selectedItems;
+    if (kws.length === 0 && !finalText) {
       alert('Please select at least one concept on the soundboard first.');
       return;
     }
 
     setIsExpanding(true);
     try {
-      const response = await fetch('/api/expand-intent', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          keywords: selectedItems.map((i) => i.label),
+      let expansion = null;
+      try {
+        const response = await fetch('/api/expand-intent', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            keywords: kws.map((i) => (typeof i === 'string' ? i : i.label)),
+            tone: selectedTone,
+            recipient,
+            context: recipient === 'nurse' || recipient === 'doctor' ? 'hospital' : 'home',
+          }),
+        });
+        if (response.ok) {
+          const resData = await response.json();
+          if (resData.success && resData.data) {
+            expansion = resData.data;
+          }
+        }
+      } catch (apiErr) {
+        console.warn('Backend API unavailable, using client Gemini engine:', apiErr);
+      }
+
+      if (!expansion) {
+        expansion = expandIntentClient({
+          keywords: kws.map((i) => (typeof i === 'string' ? i : i.label)),
           tone: selectedTone,
           recipient,
           context: recipient === 'nurse' || recipient === 'doctor' ? 'hospital' : 'home',
-        }),
-      });
+        });
+      }
 
-      const resData = await response.json();
-      if (resData.success && resData.data) {
-        setExpandedResult(resData.data);
-        setFinalText(resData.data.natural);
+      setExpandedResult(expansion);
+      setFinalText(expansion.natural);
+      if (expansion.audioUrl) {
+        setCurrentAudioUrl(expansion.audioUrl);
+        setIsCachedPlayback(true);
+      } else {
         setIsCachedPlayback(false);
       }
+      return expansion;
     } catch (err) {
-      console.warn('Intent expansion API error, using local fallback:', err);
+      console.warn('Intent expansion error:', err);
     } finally {
       setIsExpanding(false);
     }
@@ -167,21 +218,43 @@ export default function App() {
 
     setIsExpanding(true);
     try {
-      const response = await fetch('/api/expand-intent', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          keywords: selectedItems.map((i) => i.label),
+      let expansion = null;
+      try {
+        const response = await fetch('/api/expand-intent', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            keywords: selectedItems.map((i) => (typeof i === 'string' ? i : i.label)),
+            tone: newTone,
+            recipient,
+            context: recipient === 'nurse' || recipient === 'doctor' ? 'hospital' : 'home',
+          }),
+        });
+        if (response.ok) {
+          const resData = await response.json();
+          if (resData.success && resData.data) {
+            expansion = resData.data;
+          }
+        }
+      } catch (apiErr) {
+        console.warn('API backend unavailable, using client Gemini engine:', apiErr);
+      }
+
+      if (!expansion) {
+        expansion = expandIntentClient({
+          keywords: selectedItems.map((i) => (typeof i === 'string' ? i : i.label)),
           tone: newTone,
           recipient,
           context: recipient === 'nurse' || recipient === 'doctor' ? 'hospital' : 'home',
-        }),
-      });
+        });
+      }
 
-      const resData = await response.json();
-      if (resData.success && resData.data) {
-        setExpandedResult(resData.data);
-        setFinalText(resData.data.natural);
+      setExpandedResult(expansion);
+      setFinalText(expansion.natural);
+      if (expansion.audioUrl) {
+        setCurrentAudioUrl(expansion.audioUrl);
+        setIsCachedPlayback(true);
+      } else {
         setIsCachedPlayback(false);
       }
     } catch (err) {
@@ -191,67 +264,124 @@ export default function App() {
     }
   };
 
-  // Instant 1-Click Expand and Speak for Soundboard
+  // Instant 1-Click Expand and Speak (Powers "Generate Speech" and "Instant Speak")
   const handleInstantSpeakSoundboard = async () => {
-    if (selectedItems.length === 0) {
-      alert('Please select at least one concept on the soundboard first.');
+    // 1. If currently playing, clicking acts as pause/stop
+    if (isPlaying) {
+      if (audioRef.current) audioRef.current.pause();
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      setIsPlaying(false);
       return;
     }
 
-    setIsExpanding(true);
-    try {
-      const response = await fetch('/api/expand-intent', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          keywords: selectedItems.map((i) => i.label),
-          tone: selectedTone,
-          recipient,
-          context: recipient === 'nurse' || recipient === 'doctor' ? 'hospital' : 'home',
-        }),
-      });
+    let spokenText = finalText;
+    let spokenAudioUrl = currentAudioUrl;
 
-      const resData = await response.json();
-      if (resData.success && resData.data) {
-        setExpandedResult(resData.data);
-        const spokenText = resData.data.natural;
-        setFinalText(spokenText);
-        setIsCachedPlayback(false);
-
-        // Immediately trigger synthesis & speech
-        setIsSynthesizing(true);
+    // 2. If concepts are selected on soundboard, expand them first
+    if (selectedItems.length > 0) {
+      setIsExpanding(true);
+      try {
+        let expansion = null;
         try {
-          const synthRes = await fetch('/api/synthesize-voice', {
+          const response = await fetch('/api/expand-intent', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              text: spokenText,
-              voiceId: activeVoice.id,
+              keywords: selectedItems.map((i) => (typeof i === 'string' ? i : i.label)),
               tone: selectedTone,
+              recipient,
+              context: recipient === 'nurse' || recipient === 'doctor' ? 'hospital' : 'home',
             }),
           });
-          const synthData = await synthRes.json();
-          if (synthData.success && synthData.audioBase64) {
-            setCurrentAudioUrl(synthData.audioBase64);
-            if (audioRef.current) {
-              audioRef.current.src = synthData.audioBase64;
-              audioRef.current.play().then(() => setIsPlaying(true)).catch(() => {
+          if (response.ok) {
+            const resData = await response.json();
+            if (resData.success && resData.data) {
+              expansion = resData.data;
+            }
+          }
+        } catch (apiErr) {
+          console.warn('API backend unavailable, using client Gemini engine:', apiErr);
+        }
+
+        if (!expansion) {
+          expansion = expandIntentClient({
+            keywords: selectedItems.map((i) => (typeof i === 'string' ? i : i.label)),
+            tone: selectedTone,
+            recipient,
+            context: recipient === 'nurse' || recipient === 'doctor' ? 'hospital' : 'home',
+          });
+        }
+
+        setExpandedResult(expansion);
+        spokenText = expansion.natural;
+        setFinalText(spokenText);
+
+        if (expansion.audioUrl) {
+          spokenAudioUrl = expansion.audioUrl;
+          setCurrentAudioUrl(spokenAudioUrl);
+          setIsCachedPlayback(true);
+        } else {
+          spokenAudioUrl = null;
+          setCurrentAudioUrl(null);
+          setIsCachedPlayback(false);
+        }
+      } catch (err) {
+        console.error('Intent expansion error:', err);
+      } finally {
+        setIsExpanding(false);
+      }
+    }
+
+    if (!spokenText || spokenText.trim().length === 0) {
+      alert('Please select concepts on the soundboard or type custom text to speak.');
+      return;
+    }
+
+    // 3. Play matching scenario audio if available
+    if (spokenAudioUrl && audioRef.current) {
+      audioRef.current.src = spokenAudioUrl;
+      audioRef.current
+        .play()
+        .then(() => setIsPlaying(true))
+        .catch(() => {
+          speakWithBrowserFallback(spokenText);
+        });
+      return;
+    }
+
+    // 4. Try live ElevenLabs synthesis API
+    setIsSynthesizing(true);
+    try {
+      const synthRes = await fetch('/api/synthesize-voice', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          text: spokenText,
+          voiceId: activeVoice.id,
+          tone: selectedTone,
+        }),
+      });
+      if (synthRes.ok) {
+        const synthData = await synthRes.json();
+        if (synthData.success && synthData.audioBase64) {
+          setCurrentAudioUrl(synthData.audioBase64);
+          if (audioRef.current) {
+            audioRef.current.src = synthData.audioBase64;
+            audioRef.current
+              .play()
+              .then(() => setIsPlaying(true))
+              .catch(() => {
                 speakWithBrowserFallback(spokenText);
               });
-            }
-          } else {
-            speakWithBrowserFallback(spokenText);
+            return;
           }
-        } catch (sErr) {
-          speakWithBrowserFallback(spokenText);
-        } finally {
-          setIsSynthesizing(false);
         }
       }
-    } catch (err) {
-      console.warn('Instant speak error:', err);
+      speakWithBrowserFallback(spokenText);
+    } catch (sErr) {
+      speakWithBrowserFallback(spokenText);
     } finally {
-      setIsExpanding(false);
+      setIsSynthesizing(false);
     }
   };
 
