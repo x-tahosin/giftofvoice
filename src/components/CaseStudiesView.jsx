@@ -52,6 +52,17 @@ export default function CaseStudiesView({
     return () => clearInterval(timer);
   }, [isAutoPlay, isPlaying, selectedIdx]);
 
+  // Synchronize active scenario with external selection when playing
+  useEffect(() => {
+    if (activeScenarioId && isPlaying) {
+      const foundIdx = DEMO_SCENARIOS.findIndex((s) => s.id === activeScenarioId);
+      if (foundIdx !== -1 && foundIdx !== selectedIdx) {
+        setSelectedIdx(foundIdx);
+        setSlideProgress(0);
+      }
+    }
+  }, [activeScenarioId, isPlaying]);
+
   const handlePrev = () => {
     setSlideProgress(0);
     setSelectedIdx((prev) => (prev - 1 + DEMO_SCENARIOS.length) % DEMO_SCENARIOS.length);
@@ -234,7 +245,11 @@ export default function CaseStudiesView({
 
                         {/* Play / Listen Button */}
                         <button
-                          onClick={() => onSelectScenario(scenario)}
+                          onClick={() => {
+                            setSlideProgress(0);
+                            setSelectedIdx(index);
+                            onSelectScenario(scenario);
+                          }}
                           className="btn-primary-glow"
                           style={{ width: '100%', justifyContent: 'center', marginTop: '14px', padding: '12px' }}
                         >

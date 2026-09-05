@@ -67,6 +67,13 @@ export default function App() {
 
   const audioRef = useRef(null);
 
+  // Initialize persistent audio src on mount
+  useEffect(() => {
+    if (audioRef.current && currentAudioUrl) {
+      audioRef.current.src = currentAudioUrl;
+    }
+  }, []);
+
   // Browser Web Speech API Fallback (Resilient offline speech)
   const speakWithBrowserFallback = (textToSpeak) => {
     if (!('speechSynthesis' in window)) return;
@@ -113,15 +120,21 @@ export default function App() {
     }
 
     if (currentAudioUrl && audioRef.current) {
+      const currentSrc = audioRef.current.src || '';
+      if (!currentSrc.endsWith(currentAudioUrl) && currentSrc !== currentAudioUrl) {
+        audioRef.current.src = currentAudioUrl;
+      }
       audioRef.current.currentTime = 0;
-      audioRef.current
-        .play()
-        .then(() => setIsPlaying(true))
-        .catch((err) => {
-          if (err && err.name === 'AbortError') return;
-          console.warn('Playback error, falling back to Web Speech API:', err);
-          speakWithBrowserFallback(finalText);
-        });
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => setIsPlaying(true))
+          .catch((err) => {
+            if (err && err.name === 'AbortError') return;
+            console.warn('Playback error, falling back to Web Speech API:', err);
+            speakWithBrowserFallback(finalText);
+          });
+      }
     } else {
       speakWithBrowserFallback(finalText);
     }
@@ -455,7 +468,10 @@ export default function App() {
     }
 
     // 2. Stop any existing playback or speech synthesis before switching
-    if (audioRef.current) audioRef.current.pause();
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
     if ('speechSynthesis' in window) window.speechSynthesis.cancel();
     setIsPlaying(false);
 
@@ -484,19 +500,22 @@ export default function App() {
     setCurrentAudioUrl(scenario.audioUrl);
     setIsCachedPlayback(true);
 
-    if (audioRef.current) {
-      if (audioRef.current.src !== scenario.audioUrl) {
+    if (audioRef.current && scenario.audioUrl) {
+      const currentSrc = audioRef.current.src || '';
+      if (!currentSrc.endsWith(scenario.audioUrl) && currentSrc !== scenario.audioUrl) {
         audioRef.current.src = scenario.audioUrl;
       }
       audioRef.current.currentTime = 0;
-      audioRef.current
-        .play()
-        .then(() => setIsPlaying(true))
-        .catch((err) => {
-          if (err && err.name === 'AbortError') return;
-          console.warn('Playback interrupted:', err);
-          speakWithBrowserFallback(scenario.expandedSpeech);
-        });
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => setIsPlaying(true))
+          .catch((err) => {
+            if (err && err.name === 'AbortError') return;
+            console.warn('Playback interrupted:', err);
+            speakWithBrowserFallback(scenario.expandedSpeech);
+          });
+      }
     }
   };
 
@@ -556,10 +575,10 @@ export default function App() {
 
   return (
     <div className={`gov-app ${themeClass}`}>
-      {/* Hidden Persistent Audio Element */}
+      {/* Hidden Persistent Audio Element (imperatively controlled to avoid React reconciliation AbortErrors) */}
       <audio
         ref={audioRef}
-        src={currentAudioUrl}
+        preload="auto"
         onEnded={() => setIsPlaying(false)}
         onError={() => setIsPlaying(false)}
         onPause={() => setIsPlaying(false)}
