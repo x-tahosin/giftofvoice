@@ -17,10 +17,10 @@ if (!apiKey) {
 const SCENARIOS = [
   {
     filename: 'scenario_icu_nurse.mp3',
-    voiceId: 'XrExE9yKIg1WjnnlVkGX', // Matilda (Grandma Margaret - warm, gentle, mature grandmotherly tone)
+    voiceId: 'XrExE9yKIg1WjnnlVkGX', // Matilda (Mature, warm grandmotherly woman voice)
     // Expressive text with gentle breathing pauses and sincere warmth
     text: "Oh Sarah, thank you so much... you have no idea how much comfort this warm blanket gives me tonight. You've been working so hard, and your kindness touches my heart.",
-    voiceSettings: { stability: 0.45, similarity_boost: 0.85, style: 0.45, use_speaker_boost: true }
+    voiceSettings: { stability: 0.55, similarity_boost: 0.85, style: 0.35, use_speaker_boost: true }
   },
   {
     filename: 'scenario_birthday_leo.mp3',
@@ -31,17 +31,17 @@ const SCENARIOS = [
   },
   {
     filename: 'scenario_family_humor.mp3',
-    voiceId: 'CwhRBWXzGAHq8TQ4Fs17', // Roger
+    voiceId: 'CwhRBWXzGAHq8TQ4Fs17', // Roger (Friendly middle-aged male)
     // Cheerful, laughing cadence and lively dinner banter
     text: "Hey everyone! (laughs) Stop looking so worried over there! My voice might be digital today, but you all know I still tell the best jokes at this dinner table!",
     voiceSettings: { stability: 0.22, similarity_boost: 0.75, style: 0.80, use_speaker_boost: true }
   },
   {
     filename: 'scenario_daily_checkin.mp3',
-    voiceId: 'ErXwobaYiN019PkySvjV', // Antoni
+    voiceId: 'nPczCjzI2devNBz1zQrb', // Brian (Deep, resonant, calming male bedside voice)
     // Calming, gentle, grounded bedside communication
     text: "David, could you please tilt my pillow slightly to the right, and let me take a gentle sip of cold water? Thank you so much for always being so patient with me.",
-    voiceSettings: { stability: 0.38, similarity_boost: 0.82, style: 0.50, use_speaker_boost: true }
+    voiceSettings: { stability: 0.40, similarity_boost: 0.85, style: 0.45, use_speaker_boost: true }
   }
 ];
 

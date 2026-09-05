@@ -94,6 +94,7 @@ export default function StudioWorkspace({
   isCachedPlayback,
   onSelectScenario,
   onInstantSpeakSoundboard,
+  activeScenarioId,
 }) {
   const [activeCategory, setActiveCategory] = useState('all');
   const [customConcept, setCustomConcept] = useState('');
@@ -152,7 +153,7 @@ export default function StudioWorkspace({
 
         <div className="quick-presets-grid">
           {DEMO_SCENARIOS.map((scenario) => {
-            const isThisPlaying = isPlaying && currentAudioUrl === scenario.audioUrl;
+            const isThisPlaying = isPlaying && (currentAudioUrl === scenario.audioUrl || activeScenarioId === scenario.id);
             return (
               <div key={scenario.id} className="quick-preset-card">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>

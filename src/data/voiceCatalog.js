@@ -38,11 +38,12 @@ export const COMMUNITY_VOICE_CATALOG = [
     donorStory: 'Donated his voice so friends and brothers could speak naturally without sounding clinical.',
     bestFor: 'Casual conversations, sharing laughs, family dinner jokes',
     sampleText: 'Hey there! Don’t worry about a thing, we are going to make today a wonderful day.',
+    audioUrl: getAssetUrl('audio/scenario_family_humor.mp3'),
   },
   {
-    id: 'ErXwobaYiN019PkySvjV',
-    name: 'Antoni (Donated by David L., EMT Paramedic)',
-    shortName: 'Antoni',
+    id: 'nPczCjzI2devNBz1zQrb',
+    name: 'Brian (Donated by David L., EMT Paramedic)',
+    shortName: 'Brian',
     gender: 'Male',
     timbre: 'Deep, steady, measured',
     accent: 'American (Grounded)',
@@ -50,5 +51,6 @@ export const COMMUNITY_VOICE_CATALOG = [
     donorStory: 'Wanted to provide a calming, grounded male vocal timbre for clear daily interactions.',
     bestFor: 'Clear medical communication, advice, calm posture adjustment',
     sampleText: 'I am resting comfortably now. Thank you for listening so attentively.',
+    audioUrl: getAssetUrl('audio/scenario_daily_checkin.mp3'),
   },
 ];

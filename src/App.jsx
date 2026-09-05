@@ -8,6 +8,7 @@ import VoiceBankView from './components/VoiceBankView';
 import { COMMUNITY_VOICE_CATALOG } from './data/voiceCatalog';
 import { DEMO_SCENARIOS } from './data/demoScenarios';
 import { expandIntentClient } from './utils/clientGeminiEngine';
+import { getAssetUrl } from './utils/assets';
 import { useScrollReveal } from './hooks/useScrollReveal';
 
 export default function App() {
@@ -58,7 +59,7 @@ export default function App() {
   // Voice & Audio State (Curated 4-Voice Community Catalog)
   const [voiceCatalog] = useState(COMMUNITY_VOICE_CATALOG);
   const [activeVoice, setActiveVoice] = useState(COMMUNITY_VOICE_CATALOG[0]);
-  const [currentAudioUrl, setCurrentAudioUrl] = useState('/audio/scenario_icu_nurse.mp3');
+  const [currentAudioUrl, setCurrentAudioUrl] = useState(getAssetUrl('audio/scenario_icu_nurse.mp3'));
   const [isPlaying, setIsPlaying] = useState(false);
   const [isSynthesizing, setIsSynthesizing] = useState(false);
   const [isCachedPlayback, setIsCachedPlayback] = useState(true);
@@ -104,27 +105,25 @@ export default function App() {
 
   // Toggle Play / Pause
   const handleTogglePlay = () => {
-    if (!audioRef.current) {
-      speakWithBrowserFallback(finalText);
+    if (isPlaying) {
+      if (audioRef.current) audioRef.current.pause();
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      setIsPlaying(false);
       return;
     }
 
-    if (isPlaying) {
-      audioRef.current.pause();
-      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-      setIsPlaying(false);
+    if (currentAudioUrl && audioRef.current) {
+      audioRef.current.currentTime = 0;
+      audioRef.current
+        .play()
+        .then(() => setIsPlaying(true))
+        .catch((err) => {
+          if (err && err.name === 'AbortError') return;
+          console.warn('Playback error, falling back to Web Speech API:', err);
+          speakWithBrowserFallback(finalText);
+        });
     } else {
-      if (currentAudioUrl) {
-        audioRef.current
-          .play()
-          .then(() => setIsPlaying(true))
-          .catch((err) => {
-            console.warn('Playback error, falling back to Web Speech API:', err);
-            speakWithBrowserFallback(finalText);
-          });
-      } else {
-        speakWithBrowserFallback(finalText);
-      }
+      speakWithBrowserFallback(finalText);
     }
   };
 
@@ -447,6 +446,19 @@ export default function App() {
 
   // Select Preset Scenario (Zero Latency)
   const handleSelectScenario = (scenario) => {
+    // 1. If currently playing this exact scenario, toggle it to PAUSE!
+    if (isPlaying && (activeScenarioId === scenario.id || currentAudioUrl === scenario.audioUrl)) {
+      if (audioRef.current) audioRef.current.pause();
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      setIsPlaying(false);
+      return;
+    }
+
+    // 2. Stop any existing playback or speech synthesis before switching
+    if (audioRef.current) audioRef.current.pause();
+    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+    setIsPlaying(false);
+
     setActiveScenarioId(scenario.id);
     setSelectedTone(scenario.tone);
     setRecipient(scenario.recipient);
@@ -473,11 +485,15 @@ export default function App() {
     setIsCachedPlayback(true);
 
     if (audioRef.current) {
-      audioRef.current.src = scenario.audioUrl;
+      if (audioRef.current.src !== scenario.audioUrl) {
+        audioRef.current.src = scenario.audioUrl;
+      }
+      audioRef.current.currentTime = 0;
       audioRef.current
         .play()
         .then(() => setIsPlaying(true))
         .catch((err) => {
+          if (err && err.name === 'AbortError') return;
           console.warn('Playback interrupted:', err);
           speakWithBrowserFallback(scenario.expandedSpeech);
         });
@@ -496,11 +512,18 @@ export default function App() {
   // Add a newly donated community voice
   const handleAddDonatedVoice = (newVoice) => {
     if (newVoice?.audioUrl) {
+      if (audioRef.current) audioRef.current.pause();
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      setIsPlaying(false);
       setCurrentAudioUrl(newVoice.audioUrl);
       setIsCachedPlayback(true);
       if (audioRef.current) {
         audioRef.current.src = newVoice.audioUrl;
-        audioRef.current.play().then(() => setIsPlaying(true)).catch(console.warn);
+        audioRef.current.currentTime = 0;
+        audioRef.current.play().then(() => setIsPlaying(true)).catch((err) => {
+          if (err && err.name === 'AbortError') return;
+          console.warn(err);
+        });
       }
     }
   };
@@ -508,10 +531,24 @@ export default function App() {
   // Play a voice sample from VoiceBank
   const handlePlaySample = (audioUrl) => {
     if (!audioUrl) return;
+    if (isPlaying && currentAudioUrl === audioUrl) {
+      if (audioRef.current) audioRef.current.pause();
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      setIsPlaying(false);
+      return;
+    }
+    if (audioRef.current) audioRef.current.pause();
+    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+    setIsPlaying(false);
+
     setCurrentAudioUrl(audioUrl);
     if (audioRef.current) {
       audioRef.current.src = audioUrl;
-      audioRef.current.play().then(() => setIsPlaying(true)).catch(console.warn);
+      audioRef.current.currentTime = 0;
+      audioRef.current.play().then(() => setIsPlaying(true)).catch((err) => {
+        if (err && err.name === 'AbortError') return;
+        console.warn(err);
+      });
     }
   };
 
@@ -592,6 +629,7 @@ export default function App() {
           isCachedPlayback={isCachedPlayback}
           onSelectScenario={handleSelectScenario}
           onInstantSpeakSoundboard={handleInstantSpeakSoundboard}
+          activeScenarioId={activeScenarioId}
         />
 
         {/* 5. Community Voice Bank & Donation Studio */}
