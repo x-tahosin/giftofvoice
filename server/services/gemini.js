@@ -24,7 +24,7 @@ function cleanAndParseJSON(rawText) {
 /**
  * Tone-conditioned deterministic fallback (ensures distinct outputs per tone even offline)
  */
-function getDeterministicFallback(keywords, tone = 'grateful', recipient = 'nurse') {
+function getDeterministicFallback(keywords, tone = 'grateful', recipient = 'nurse', variation = 0) {
   const kwList = Array.isArray(keywords) ? keywords : [keywords];
   const kwLower = kwList.map((k) => (k || '').toLowerCase()).join(' ');
   const toneKey = (tone || 'grateful').toLowerCase();
@@ -410,10 +410,11 @@ export async function expandIntent({
   tone = 'grateful',
   context = 'general',
   recipient = 'caregiver',
+  variation = 0,
 }) {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey || apiKey === 'your_gemini_api_key_here') {
-    return getDeterministicFallback(keywords, tone, recipient);
+    return getDeterministicFallback(keywords, tone, recipient, variation);
   }
 
   const toneDirectives = {

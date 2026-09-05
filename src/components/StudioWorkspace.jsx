@@ -233,7 +233,7 @@ export default function StudioWorkspace({
                   </button>
 
                   <button
-                    onClick={onInstantSpeakSoundboard || onExpandIntent}
+                    onClick={() => (onInstantSpeakSoundboard ? onInstantSpeakSoundboard() : onExpandIntent && onExpandIntent())}
                     className="btn-primary-glow"
                     style={{ padding: '6px 14px', fontSize: '0.78rem' }}
                     title="Generate speech and speak immediately"
@@ -466,7 +466,7 @@ export default function StudioWorkspace({
 
             <div style={{ alignSelf: 'flex-end' }}>
               <button
-                onClick={onInstantSpeakSoundboard || onExpandIntent}
+                onClick={() => (onInstantSpeakSoundboard ? onInstantSpeakSoundboard() : onExpandIntent && onExpandIntent())}
                 disabled={isExpanding || isSynthesizing || (!finalText && selectedItems.length === 0)}
                 className="btn-primary-glow"
                 style={{ padding: '10px 18px', fontSize: '0.84rem' }}
@@ -505,13 +505,13 @@ export default function StudioWorkspace({
                   Preferred Phrasing (Gemini 3.6 Flash)
                 </span>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  {selectedItems.length > 0 && (
+                  {(selectedItems.length > 0 || finalText) && (
                     <button
-                      onClick={onExpandIntent}
+                      onClick={() => onExpandIntent && onExpandIntent(null, true)}
                       disabled={isExpanding}
                       className="btn-outline"
                       style={{ padding: '2px 8px', fontSize: '0.68rem', borderRadius: 'var(--radius-sm)' }}
-                      title="Re-run Gemini contextual expansion"
+                      title="Re-run Gemini contextual expansion with fresh phrasing variations"
                     >
                       <RefreshCw size={11} className={isExpanding ? 'animate-spin' : ''} />
                       <span>Regenerate Phrasings</span>

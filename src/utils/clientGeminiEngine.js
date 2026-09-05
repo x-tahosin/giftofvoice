@@ -6,11 +6,18 @@
 
 import { DEMO_SCENARIOS } from '../data/demoScenarios';
 
+function pickVariant(variants, varIndex = 0) {
+  if (!Array.isArray(variants) || variants.length === 0) return variants;
+  const idx = Math.abs(Number(varIndex) || 0) % variants.length;
+  return variants[idx];
+}
+
 export function expandIntentClient({
   keywords = [],
   tone = 'grateful',
   recipient = 'nurse',
   context = 'hospital',
+  variation = 0,
 }) {
   const kwList = Array.isArray(keywords) ? keywords : [keywords];
   const kwLower = kwList.map((k) => (k || '').toLowerCase()).join(' ');
@@ -138,54 +145,120 @@ export function expandIntentClient({
   // =========================================================================
   if (hasGratitude && !hasWater && !hasPillow && !hasSitUp && !hasLights && !hasUrgentMedical) {
     if (toneKey === 'peaceful') {
-      return {
-        natural: `Thank you so much, ${partnerLabel}... your quiet patience and gentle care bring such peaceful comfort to my room.`,
-        concise: `Thank you so much for your peaceful, gentle presence.`,
-        expressive: `Sitting here in quiet peace, I just wanted to say thank you so much... having you by my side brings calm, safety, and deep comfort to my soul.`,
-        detected_emotion: 'Calm & Peaceful Gratitude',
-        tone_used: tone,
-        model_used: 'gemini-3.6-flash-client',
-      };
+      return pickVariant([
+        {
+          natural: `Thank you so much, ${partnerLabel}... your quiet patience and gentle care bring such peaceful comfort to my room.`,
+          concise: `Thank you so much for your peaceful, gentle presence.`,
+          expressive: `Sitting here in quiet peace, I just wanted to say thank you so much... having you by my side brings calm, safety, and deep comfort to my soul.`,
+          detected_emotion: 'Calm & Peaceful Gratitude',
+          tone_used: tone,
+          model_used: 'gemini-3.6-flash-client',
+        },
+        {
+          natural: `I truly appreciate you, ${partnerLabel}... the gentle calm and attentiveness you bring into this room means the world to me.`,
+          concise: `Deeply grateful for your calm and gentle care, ${partnerLabel}.`,
+          expressive: `Thank you from the bottom of my heart, ${partnerLabel}... your quiet compassion turns this whole room into a sanctuary of peace.`,
+          detected_emotion: 'Serene Gratitude',
+          tone_used: tone,
+          model_used: 'gemini-3.6-flash-client',
+        },
+        {
+          natural: `A quiet and heartfelt thank you, ${partnerLabel}... resting here knowing you are watching over me brings such soothing comfort.`,
+          concise: `Thank you, ${partnerLabel}. Resting peacefully thanks to your care.`,
+          expressive: `Even when I don't say much, please know how thankful I am... your gentle presence brings absolute stillness and peace to my spirit.`,
+          detected_emotion: 'Tranquil Appreciation',
+          tone_used: tone,
+          model_used: 'gemini-3.6-flash-client',
+        },
+      ], variation);
     }
     if (toneKey === 'loving') {
-      return {
-        natural: `Thank you so much, ${partnerLabel}... you take such loving care of me, and I appreciate you with all my heart.`,
-        concise: `Thank you so much, my dear. You mean everything to me.`,
-        expressive: `Bless your kind and loving heart... thank you so much for watching over me with such tender devotion.`,
-        detected_emotion: 'Tender Loving Gratitude',
-        tone_used: tone,
-        model_used: 'gemini-3.6-flash-client',
-      };
+      return pickVariant([
+        {
+          natural: `Thank you so much, ${partnerLabel}... you take such loving care of me, and I appreciate you with all my heart.`,
+          concise: `Thank you so much, my dear. You mean everything to me.`,
+          expressive: `Bless your kind and loving heart... thank you so much for watching over me with such tender devotion.`,
+          detected_emotion: 'Tender Loving Gratitude',
+          tone_used: tone,
+          model_used: 'gemini-3.6-flash-client',
+        },
+        {
+          natural: `Bless you, my dear... thank you so much for your sweet presence and the endless love you pour into every single day.`,
+          concise: `With all my love, thank you so much for being here with me.`,
+          expressive: `You are an extraordinary blessing in my life... thank you so much for loving me through every moment with tender patience.`,
+          detected_emotion: 'Deep Loving Appreciation',
+          tone_used: tone,
+          model_used: 'gemini-3.6-flash-client',
+        },
+      ], variation);
     }
     if (toneKey === 'playful') {
-      return {
-        natural: `Thank you so much, ${partnerLabel}! (smiles) You take such wonderful care of me, I'm definitely giving you a five-star review today!`,
-        concise: `Thank you so much! You're officially the MVP today.`,
-        expressive: `Thank you so much! (laughs) Even when I'm being a handful, you still treat me with the biggest smile in the room!`,
-        detected_emotion: 'Playful Appreciation & Cheer',
-        tone_used: tone,
-        model_used: 'gemini-3.6-flash-client',
-      };
+      return pickVariant([
+        {
+          natural: `Thank you so much, ${partnerLabel}! (smiles) You take such wonderful care of me, I'm definitely giving you a five-star review today!`,
+          concise: `Thank you so much! You're officially the MVP today.`,
+          expressive: `Thank you so much! (laughs) Even when I'm being a handful, you still treat me with the biggest smile in the room!`,
+          detected_emotion: 'Playful Appreciation & Cheer',
+          tone_used: tone,
+          model_used: 'gemini-3.6-flash-client',
+        },
+        {
+          natural: `Hey ${partnerLabel}, thank you so much! (chuckles) You deserve a gold medal for being so patient with me today!`,
+          concise: `Gold medal for you today! Thank you so much.`,
+          expressive: `Thank you a million times, ${partnerLabel}! (laughs) You're officially my favorite person on this entire shift!`,
+          detected_emotion: 'Playful Bedside Wit',
+          tone_used: tone,
+          model_used: 'gemini-3.6-flash-client',
+        },
+      ], variation);
     }
     if (toneKey === 'urgent') {
-      return {
-        natural: `Thank you so much for coming in right away, ${partnerLabel}. I really needed you.`,
-        concise: `Thank you so much for responding so quickly.`,
-        expressive: `Thank you so much for hurrying in, ${partnerLabel}... I was in distress and your quick arrival is such a relief.`,
-        detected_emotion: 'Urgent Relief & Appreciation',
-        tone_used: tone,
-        model_used: 'gemini-3.6-flash-client',
-      };
+      return pickVariant([
+        {
+          natural: `Thank you so much for coming in right away, ${partnerLabel}. I really needed you.`,
+          concise: `Thank you so much for responding so quickly.`,
+          expressive: `Thank you so much for hurrying in, ${partnerLabel}... I was in distress and your quick arrival is such a relief.`,
+          detected_emotion: 'Urgent Relief & Appreciation',
+          tone_used: tone,
+          model_used: 'gemini-3.6-flash-client',
+        },
+        {
+          natural: `Thank you for your immediate response, ${partnerLabel}. Having you here right now takes a huge weight off my chest.`,
+          concise: `Thank you for the prompt assistance, ${partnerLabel}.`,
+          expressive: `I cannot thank you enough for getting here so fast... thank you for attending to my distress without delay.`,
+          detected_emotion: 'Prompt Care Gratitude',
+          tone_used: tone,
+          model_used: 'gemini-3.6-flash-client',
+        },
+      ], variation);
     }
     // Default Grateful
-    return {
-      natural: `Thank you so much, ${partnerLabel}. Your continuous kindness and watchful care mean more to me than words can ever express.`,
-      concise: `Thank you so much, ${partnerLabel}, for your wonderful kindness.`,
-      expressive: `Oh, thank you so much... you work so hard, and your warmth and gentleness truly touch my heart today.`,
-      detected_emotion: 'Heartfelt Gratitude',
-      tone_used: tone,
-      model_used: 'gemini-3.6-flash-client',
-    };
+    return pickVariant([
+      {
+        natural: `Thank you so much, ${partnerLabel}. Your continuous kindness and watchful care mean more to me than words can ever express.`,
+        concise: `Thank you so much, ${partnerLabel}, for your wonderful kindness.`,
+        expressive: `Oh, thank you so much... you work so hard, and your warmth and gentleness truly touch my heart today.`,
+        detected_emotion: 'Heartfelt Gratitude',
+        tone_used: tone,
+        model_used: 'gemini-3.6-flash-client',
+      },
+      {
+        natural: `I just wanted to take a moment to thank you, ${partnerLabel}... everything you do for me makes an enormous difference.`,
+        concise: `Thank you so much, ${partnerLabel}. You make every day brighter.`,
+        expressive: `My heart is full of gratitude today... thank you so much for your tireless dedication, gentle smile, and faithful care.`,
+        detected_emotion: 'Deep Heartfelt Thanks',
+        tone_used: tone,
+        model_used: 'gemini-3.6-flash-client',
+      },
+      {
+        natural: `Thank you with all my heart, ${partnerLabel}. Having someone who treats me with such deep respect and kindness is a true blessing.`,
+        concise: `Heartfelt thanks to you, ${partnerLabel}, for always being by my side.`,
+        expressive: `Even when I cannot speak many words, please know how deeply grateful I am... thank you so much for your empathy and constant support.`,
+        detected_emotion: 'Sincere Devoted Gratitude',
+        tone_used: tone,
+        model_used: 'gemini-3.6-flash-client',
+      },
+    ], variation);
   }
 
   // =========================================================================
@@ -505,56 +578,114 @@ export function expandIntentClient({
     .join(' and ') || 'my needs';
 
   if (toneKey === 'urgent') {
-    return {
-      natural: `Excuse me ${partnerLabel}, I urgently need assistance regarding ${cleanConcepts} right now, please.`,
-      concise: `Urgent assistance needed with ${cleanConcepts}, please.`,
-      expressive: `Please help me right this moment with ${cleanConcepts}—it requires immediate attention.`,
-      detected_emotion: 'Urgent Care Request',
-      tone_used: tone,
-      model_used: 'gemini-3.6-flash-client',
-    };
+    return pickVariant([
+      {
+        natural: `Excuse me ${partnerLabel}, I urgently need assistance regarding ${cleanConcepts} right now, please.`,
+        concise: `Urgent assistance needed with ${cleanConcepts}, please.`,
+        expressive: `Please help me right this moment with ${cleanConcepts}—it requires immediate attention.`,
+        detected_emotion: 'Urgent Care Request',
+        tone_used: tone,
+        model_used: 'gemini-3.6-flash-client',
+      },
+      {
+        natural: `${partnerLabel}, I am in urgent need of help with ${cleanConcepts}, please assist me as soon as you can.`,
+        concise: `Urgent help needed with ${cleanConcepts}.`,
+        expressive: `Please don't delay, ${partnerLabel}... I really need your immediate assistance with ${cleanConcepts}.`,
+        detected_emotion: 'Immediate Assistance',
+        tone_used: tone,
+        model_used: 'gemini-3.6-flash-client',
+      },
+    ], variation);
   }
 
   if (toneKey === 'playful') {
-    return {
-      natural: `Hey ${partnerLabel}! (smiles) Whenever you have a second, could we check on ${cleanConcepts}? You know it'll make my whole day!`,
-      concise: `Time for ${cleanConcepts}! Best team ever.`,
-      expressive: `Well hello there! (chuckles) If you could help me with ${cleanConcepts}, I promise to give you my biggest smile today!`,
-      detected_emotion: 'Playful Dialogue',
-      tone_used: tone,
-      model_used: 'gemini-3.6-flash-client',
-    };
+    return pickVariant([
+      {
+        natural: `Hey ${partnerLabel}! (smiles) Whenever you have a second, could we check on ${cleanConcepts}? You know it'll make my whole day!`,
+        concise: `Time for ${cleanConcepts}! Best team ever.`,
+        expressive: `Well hello there! (chuckles) If you could help me with ${cleanConcepts}, I promise to give you my biggest smile today!`,
+        detected_emotion: 'Playful Dialogue',
+        tone_used: tone,
+        model_used: 'gemini-3.6-flash-client',
+      },
+      {
+        natural: `Well hello ${partnerLabel}! (chuckles) If you have a free minute, could we tackle ${cleanConcepts}? Best team in the house!`,
+        concise: `Ready for ${cleanConcepts}? Let's do it!`,
+        expressive: `Hey ${partnerLabel}! (laughs) You're my favorite superhero around here, especially if we can sort out ${cleanConcepts}!`,
+        detected_emotion: 'Humorous Bedside Banter',
+        tone_used: tone,
+        model_used: 'gemini-3.6-flash-client',
+      },
+    ], variation);
   }
 
   if (toneKey === 'loving') {
-    return {
-      natural: `Thank you so much for always taking such loving care of me, ${partnerLabel}. When you have a moment, could you help me with ${cleanConcepts}?`,
-      concise: `Sending you my love. Please help me with ${cleanConcepts} when you can.`,
-      expressive: `You bring so much warmth into my days, my dear. Thank you for your kindness, and for helping me with ${cleanConcepts}.`,
-      detected_emotion: 'Affectionate Intimacy',
-      tone_used: tone,
-      model_used: 'gemini-3.6-flash-client',
-    };
+    return pickVariant([
+      {
+        natural: `Thank you so much for always taking such loving care of me, ${partnerLabel}. When you have a moment, could you help me with ${cleanConcepts}?`,
+        concise: `Sending you my love. Please help me with ${cleanConcepts} when you can.`,
+        expressive: `You bring so much warmth into my days, my dear. Thank you for your kindness, and for helping me with ${cleanConcepts}.`,
+        detected_emotion: 'Affectionate Intimacy',
+        tone_used: tone,
+        model_used: 'gemini-3.6-flash-client',
+      },
+      {
+        natural: `My dear ${partnerLabel}, your gentle presence is such a comfort. Whenever you have a free second, could we attend to ${cleanConcepts}?`,
+        concise: `With all my heart, please assist me with ${cleanConcepts}.`,
+        expressive: `Bless you for being so patient and loving with me... whenever you are ready, I would love some help with ${cleanConcepts}.`,
+        detected_emotion: 'Loving Request',
+        tone_used: tone,
+        model_used: 'gemini-3.6-flash-client',
+      },
+    ], variation);
   }
 
   if (toneKey === 'peaceful') {
-    return {
-      natural: `Whenever you have a quiet moment, ${partnerLabel}, could you kindly help me with ${cleanConcepts}? Thank you for your gentle presence.`,
-      concise: `Gentle help with ${cleanConcepts}, whenever you are ready.`,
-      expressive: `Sitting here quietly, I would be so comfortable if we could attend to ${cleanConcepts}... thank you for your patience and peace.`,
-      detected_emotion: 'Calm & Peaceful Request',
-      tone_used: tone,
-      model_used: 'gemini-3.6-flash-client',
-    };
+    return pickVariant([
+      {
+        natural: `Whenever you have a quiet moment, ${partnerLabel}, could you kindly help me with ${cleanConcepts}? Thank you for your gentle presence.`,
+        concise: `Gentle help with ${cleanConcepts}, whenever you are ready.`,
+        expressive: `Sitting here quietly, I would be so comfortable if we could attend to ${cleanConcepts}... thank you for your patience and peace.`,
+        detected_emotion: 'Calm & Peaceful Request',
+        tone_used: tone,
+        model_used: 'gemini-3.6-flash-client',
+      },
+      {
+        natural: `At your own pace, ${partnerLabel}, I would be so grateful for your quiet help with ${cleanConcepts}... thank you for being here.`,
+        concise: `Help with ${cleanConcepts} at your convenience, ${partnerLabel}.`,
+        expressive: `In this serene moment, having some gentle assistance with ${cleanConcepts} would bring such calm relief to my day.`,
+        detected_emotion: 'Serene Bedside Request',
+        tone_used: tone,
+        model_used: 'gemini-3.6-flash-client',
+      },
+      {
+        natural: `When it's peaceful and convenient, ${partnerLabel}, could we take care of ${cleanConcepts}? Your calm patience means so much to me.`,
+        concise: `Quiet help with ${cleanConcepts}, please.`,
+        expressive: `Resting here peacefully, I would deeply appreciate your gentle assistance with ${cleanConcepts} whenever you are ready.`,
+        detected_emotion: 'Tranquil Bedside Care',
+        tone_used: tone,
+        model_used: 'gemini-3.6-flash-client',
+      },
+    ], variation);
   }
 
   // Default Grateful
-  return {
-    natural: `Thank you so much, ${partnerLabel}. When you have a moment, could you please help me with ${cleanConcepts}? Your kindness means everything.`,
-    concise: `Thank you ${partnerLabel}, please help with ${cleanConcepts}.`,
-    expressive: `I am so grateful for your patience and gentle hands today. Thank you for being by my side and helping with ${cleanConcepts}.`,
-    detected_emotion: 'Heartfelt Gratitude',
-    tone_used: tone,
-    model_used: 'gemini-3.6-flash-client',
-  };
+  return pickVariant([
+    {
+      natural: `Thank you so much, ${partnerLabel}. When you have a moment, could you please help me with ${cleanConcepts}? Your kindness means everything.`,
+      concise: `Thank you ${partnerLabel}, please help with ${cleanConcepts}.`,
+      expressive: `I am so grateful for your patience and gentle hands today. Thank you for being by my side and helping with ${cleanConcepts}.`,
+      detected_emotion: 'Heartfelt Gratitude',
+      tone_used: tone,
+      model_used: 'gemini-3.6-flash-client',
+    },
+    {
+      natural: `I am so thankful for your dedication today, ${partnerLabel}. Whenever you have a second, could you please assist me with ${cleanConcepts}?`,
+      concise: `Deeply grateful for your help with ${cleanConcepts}.`,
+      expressive: `Your continuous support means the world to me... thank you so much for looking after me and assisting with ${cleanConcepts}.`,
+      detected_emotion: 'Sincere Gratitude',
+      tone_used: tone,
+      model_used: 'gemini-3.6-flash-client',
+    },
+  ], variation);
 }

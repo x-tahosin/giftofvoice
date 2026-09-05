@@ -98,7 +98,7 @@ export default function IntentBuilder({
         </div>
 
         <button
-          onClick={onExpandIntent}
+          onClick={() => onExpandIntent && onExpandIntent()}
           disabled={isExpanding}
           className="gov-btn-primary"
         >

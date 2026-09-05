@@ -154,16 +154,30 @@ export default function App() {
     }
   };
 
+  const [variationIndex, setVariationIndex] = useState(0);
+
   // Expand intent with Gemini 3.6 Flash (with client-side zero-latency fallback)
-  const handleExpandIntent = async (customKeywords = null) => {
-    const kws = customKeywords || selectedItems;
-    if (kws.length === 0 && !finalText) {
+  const handleExpandIntent = async (customKeywords = null, isRegenerate = false) => {
+    // If customKeywords is an event object (e.g. from React onClick), ignore it!
+    const validList = Array.isArray(customKeywords) ? customKeywords : null;
+    const kws = validList || (selectedItems.length > 0 ? selectedItems : (finalText ? [{ label: finalText }] : []));
+    if (kws.length === 0) {
       alert('Please select at least one concept on the soundboard first.');
       return;
     }
 
+    const nextVar = isRegenerate ? variationIndex + 1 : variationIndex;
+    if (isRegenerate) {
+      setVariationIndex(nextVar);
+    }
+
     setIsExpanding(true);
     try {
+      if (isRegenerate) {
+        // Small delay for clean tactile visual feedback on the button and cards
+        await new Promise((resolve) => setTimeout(resolve, 320));
+      }
+
       let expansion = null;
       try {
         const response = await fetch('/api/expand-intent', {
@@ -174,6 +188,7 @@ export default function App() {
             tone: selectedTone,
             recipient,
             context: recipient === 'nurse' || recipient === 'doctor' ? 'hospital' : 'home',
+            variation: nextVar,
           }),
         });
         if (response.ok) {
@@ -192,6 +207,7 @@ export default function App() {
           tone: selectedTone,
           recipient,
           context: recipient === 'nurse' || recipient === 'doctor' ? 'hospital' : 'home',
+          variation: nextVar,
         });
       }
 
@@ -228,6 +244,7 @@ export default function App() {
             tone: newTone,
             recipient,
             context: recipient === 'nurse' || recipient === 'doctor' ? 'hospital' : 'home',
+            variation: variationIndex,
           }),
         });
         if (response.ok) {
@@ -246,6 +263,7 @@ export default function App() {
           tone: newTone,
           recipient,
           context: recipient === 'nurse' || recipient === 'doctor' ? 'hospital' : 'home',
+          variation: variationIndex,
         });
       }
 
