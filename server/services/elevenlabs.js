@@ -6,14 +6,14 @@
 // Curated community voice bank catalog with verified working premade voices
 export const VOICE_CATALOG = [
   {
-    id: 'EXAVITQu4vr4xnSDxMaL',
-    name: 'Sarah (Donated by Sarah M., Hospice Volunteer)',
-    shortName: 'Sarah',
+    id: 'XrExE9yKIg1WjnnlVkGX',
+    name: 'Grandma Margaret (Donated by Margaret E., Stroke Survivor & Grandmother)',
+    shortName: 'Grandma Margaret',
     gender: 'female',
-    tone: 'Reassuring, mature, gentle',
-    accent: 'American',
-    avatar: '👩',
-    description: 'Gentle and soothing, ideal for bedside gratitude and personal comfort.',
+    tone: 'Warm, gentle, mature grandmotherly cadence',
+    accent: 'American (Elderly)',
+    avatar: '👵',
+    description: 'Authentic elderly grandmotherly timbre, gentle and soothing, ideal for bedside gratitude and personal comfort.',
   },
   {
     id: 'CwhRBWXzGAHq8TQ4Fs17',
@@ -78,7 +78,7 @@ function getVoiceSettings(tone = 'grateful') {
  */
 export async function synthesizeVoice({
   text,
-  voiceId = 'EXAVITQu4vr4xnSDxMaL',
+  voiceId = 'XrExE9yKIg1WjnnlVkGX',
   tone = 'grateful',
 }) {
   const apiKey = process.env.ELEVENLABS_API_KEY;

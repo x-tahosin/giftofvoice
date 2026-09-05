@@ -17,17 +17,17 @@ if (!apiKey) {
 const SCENARIOS = [
   {
     filename: 'scenario_icu_nurse.mp3',
-    voiceId: 'EXAVITQu4vr4xnSDxMaL', // Sarah
+    voiceId: 'XrExE9yKIg1WjnnlVkGX', // Matilda (Grandma Margaret - warm, gentle, mature grandmotherly tone)
     // Expressive text with gentle breathing pauses and sincere warmth
     text: "Oh Sarah, thank you so much... you have no idea how much comfort this warm blanket gives me tonight. You've been working so hard, and your kindness touches my heart.",
-    voiceSettings: { stability: 0.32, similarity_boost: 0.82, style: 0.65, use_speaker_boost: true }
+    voiceSettings: { stability: 0.45, similarity_boost: 0.85, style: 0.45, use_speaker_boost: true }
   },
   {
     filename: 'scenario_birthday_leo.mp3',
-    voiceId: 'EXAVITQu4vr4xnSDxMaL', // Sarah
-    // Joyful, affectionate grandfather/grandmother blessing with emotional excitement
+    voiceId: 'pqHfZKP75CvOlQylNhV4', // Grandpa Bill (Elderly grandfatherly voice)
+    // Joyful, affectionate grandfather blessing with emotional excitement
     text: "Happy birthday, my sweet little Leo! Look at you growing so fast! Come give grandpa a big hug and hold my hand... I love you to the moon and back, and I am so proud of you!",
-    voiceSettings: { stability: 0.28, similarity_boost: 0.80, style: 0.72, use_speaker_boost: true }
+    voiceSettings: { stability: 0.35, similarity_boost: 0.80, style: 0.60, use_speaker_boost: true }
   },
   {
     filename: 'scenario_family_humor.mp3',

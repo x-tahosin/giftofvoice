@@ -67,7 +67,7 @@ export default function HeroSection({
                 <span className="widget-status-badge">Live Vocal Preview</span>
               </div>
               <span style={{ fontSize: '0.74rem', color: 'var(--text-muted)' }}>
-                Vocal Timbre: <strong>{activeVoice?.shortName || 'Sarah'}</strong>
+                Vocal Timbre: <strong>{activeVoice?.shortName || 'Grandma Margaret'}</strong>
               </span>
             </div>
 
@@ -120,7 +120,7 @@ export default function HeroSection({
               ) : (
                 <>
                   <Play size={16} fill="currentColor" />
-                  <span>Listen to Sarah's Warm Inflection</span>
+                  <span>Listen to Grandma Margaret's Warm Inflection</span>
                 </>
               )}
             </button>

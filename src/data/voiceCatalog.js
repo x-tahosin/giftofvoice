@@ -2,16 +2,17 @@ import { getAssetUrl } from '../utils/assets.js';
 
 export const COMMUNITY_VOICE_CATALOG = [
   {
-    id: 'EXAVITQu4vr4xnSDxMaL',
-    name: 'Sarah (Donated by Sarah M., Hospice Volunteer)',
-    shortName: 'Sarah',
+    id: 'XrExE9yKIg1WjnnlVkGX',
+    name: 'Grandma Margaret (Donated by Margaret E., Stroke Survivor & Grandmother)',
+    shortName: 'Grandma Margaret',
     gender: 'Female',
-    timbre: 'Warm, soothing, maternal',
-    accent: 'American (Neutral)',
-    avatar: '👩',
-    donorStory: 'Donated her voice after watching her grandmother navigate non-verbal stroke recovery.',
-    bestFor: 'Bedside gratitude, gentle family comfort, nursing check-ins',
-    sampleText: 'Thank you for your warmth and care today. Having you here makes all the difference.',
+    timbre: 'Warm, gentle, mature grandmotherly cadence',
+    accent: 'American (Elderly)',
+    avatar: '👵',
+    donorStory: 'Donated her voice so elderly mothers and grandmothers recovering from stroke or tracheostomy can express heartfelt gratitude with authentic grandmotherly tenderness.',
+    bestFor: 'Bedside gratitude, night nurse appreciation, heartfelt family tenderness',
+    sampleText: "Oh Sarah, thank you so much... you have no idea how much comfort this warm blanket gives me tonight. You've been working so hard, and your kindness touches my heart.",
+    audioUrl: getAssetUrl('audio/scenario_icu_nurse.mp3'),
   },
   {
     id: 'pqHfZKP75CvOlQylNhV4',

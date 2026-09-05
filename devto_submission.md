@@ -44,11 +44,11 @@ To ensure judges on any device or connection speed experience instant results, G
 1. **ICU Night Ward — Thanking the Overworked Nurse**
    - *Concepts:* `[Thank you so much]` + `[Warm blanket]` + `[Your kindness]`
    - *Gemini Output:* *"Thank you so much, Sarah. You have been working so hard all night, and bringing me this warm blanket gave me so much peace and comfort. I truly appreciate your kindness."*
-   - *Voice:* Sarah (Maternal warmth, gentle prosody)
+   - *Voice:* Grandma Margaret (Warm, gentle, mature grandmotherly tone)
 2. **Bedtime Blessing — Grandchild's 7th Birthday**
    - *Concepts:* `[I love you deeply]` + `[So proud of you]` + `[Hold my hand]`
    - *Gemini Output:* *"Happy birthday, my sweet Leo! I love you with all of my heart, and I am so deeply proud of the brave, curious boy you are growing into today. Come hold my hand!"*
-   - *Voice:* Sarah (Tender affection, expressive cadence)
+   - *Voice:* Grandpa Bill (Elderly grandfatherly warmth, raspy wisdom)
 3. **Family Dinner — Breaking the Silence with a Dad Joke**
    - *Concepts:* `[Tell me a funny joke]` + `[Do not worry about me]` + `[You look amazing]`
    - *Gemini Output:* *"Hey everyone, please don’t worry about me over here! I might be letting the technology do the talking today, but I definitely still have the best sense of humor in this room."*

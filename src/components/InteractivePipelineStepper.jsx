@@ -249,7 +249,7 @@ export default function InteractivePipelineStepper({
             <div style={{ background: 'var(--bg-subtle)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)', padding: '16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '14px' }}>
               <div>
                 <span style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--primary)' }}>
-                  Spoken Timbre: Sarah (Donated Hospice Voice)
+                  Spoken Timbre: Grandma Margaret (Elderly Donated Voice)
                 </span>
                 <p style={{ fontSize: '0.95rem', color: 'var(--text-primary)', fontStyle: 'italic', marginTop: '4px' }}>
                   "Oh Sarah, thank you so much... you have no idea how much comfort this warm blanket gives me tonight."
