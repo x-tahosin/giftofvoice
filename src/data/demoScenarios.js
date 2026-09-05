@@ -45,7 +45,7 @@ export const DEMO_SCENARIOS = [
     voiceId: 'CwhRBWXzGAHq8TQ4Fs17',
     voiceName: 'Roger (Donated Voice)',
     audioUrl: getAssetUrl('audio/scenario_family_humor.mp3'),
-    expandedSpeech: "Hey everyone! (laughs) Stop looking so worried over there! My voice might be digital today, but you all know I still tell the best jokes at this dinner table!",
+    expandedSpeech: "Hey everyone! Come on now, stop looking so worried over there! My voice might be digital today, but you all know I still tell the best jokes at this dinner table!",
     concise: 'Don’t look so worried, I still have the best jokes at this table!',
     expressive: 'You all look wonderful tonight! Don’t look so serious—I still have plenty of jokes saved up for whenever you are ready to laugh!',
   },

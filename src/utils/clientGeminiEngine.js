@@ -93,9 +93,9 @@ export function expandIntentClient({
     }
     if (toneKey === 'playful') {
       return {
-        natural: `Thanks for the warm blanket, ${partnerLabel}! (chuckles) Though I think you're secretly trying to wrap me up like a cozy hospital burrito!`,
+        natural: `Thanks for the warm blanket, ${partnerLabel}! Though I think you're secretly trying to wrap me up like a cozy hospital burrito!`,
         concise: `Thanks for the cozy blanket, ${partnerLabel}! Best burrito ever.`,
-        expressive: `Ah ${partnerLabel}, you saved my life with this blanket! (laughs) Now if only it came with room service and dessert!`,
+        expressive: `Ah ${partnerLabel}, you saved my life with this blanket! Now if only it came with room service and dessert!`,
         detected_emotion: 'Playful Warmth & Humor',
         tone_used: tone,
         model_used: 'gemini-3.6-flash-client',
@@ -195,17 +195,17 @@ export function expandIntentClient({
     if (toneKey === 'playful') {
       return pickVariant([
         {
-          natural: `Thank you so much, ${partnerLabel}! (smiles) You take such wonderful care of me, I'm definitely giving you a five-star review today!`,
+          natural: `Thank you so much, ${partnerLabel}! You take such wonderful care of me, I'm definitely giving you a five-star review today!`,
           concise: `Thank you so much! You're officially the MVP today.`,
-          expressive: `Thank you so much! (laughs) Even when I'm being a handful, you still treat me with the biggest smile in the room!`,
+          expressive: `Thank you so much! Even when I'm being a handful, you still treat me with the biggest smile in the room!`,
           detected_emotion: 'Playful Appreciation & Cheer',
           tone_used: tone,
           model_used: 'gemini-3.6-flash-client',
         },
         {
-          natural: `Hey ${partnerLabel}, thank you so much! (chuckles) You deserve a gold medal for being so patient with me today!`,
+          natural: `Hey ${partnerLabel}, thank you so much! You deserve a gold medal for being so patient with me today!`,
           concise: `Gold medal for you today! Thank you so much.`,
-          expressive: `Thank you a million times, ${partnerLabel}! (laughs) You're officially my favorite person on this entire shift!`,
+          expressive: `Thank you a million times, ${partnerLabel}! You're officially my favorite person on this entire shift!`,
           detected_emotion: 'Playful Bedside Wit',
           tone_used: tone,
           model_used: 'gemini-3.6-flash-client',
@@ -318,7 +318,7 @@ export function expandIntentClient({
     }
     if (toneKey === 'playful') {
       return {
-        natural: `Could I please get a fresh glass of cold water, ${partnerLabel}? (smiles) On the rocks, if the kitchen is still open!`,
+        natural: `Could I please get a fresh glass of cold water, ${partnerLabel}? On the rocks, if the kitchen is still open!`,
         concise: `Cold water please, on the rocks!`,
         expressive: `I would love a cool glass of water if you're offering—ice cold would be absolutely heavenly right now!`,
         detected_emotion: 'Playful Hydration Request',
@@ -362,7 +362,7 @@ export function expandIntentClient({
     }
     if (toneKey === 'playful') {
       return {
-        natural: `Could we fluff my pillow a little bit, ${partnerLabel}? (smiles) Getting the royal treatment today!`,
+        natural: `Could we fluff my pillow a little bit, ${partnerLabel}? Getting the royal treatment today!`,
         concise: `Pillow fluffing please!`,
         expressive: `If we could adjust my pillow just an inch to the left, I'll be the happiest patient on this floor!`,
         detected_emotion: 'Playful Comfort Request',
@@ -396,9 +396,9 @@ export function expandIntentClient({
     }
     if (toneKey === 'playful') {
       return {
-        natural: `Could I get another blanket, ${partnerLabel}? (chuckles) Wrap me up like a cozy burrito!`,
+        natural: `Could I get another blanket, ${partnerLabel}? Wrap me up like a cozy burrito!`,
         concise: `Cozy blanket please, time to hibernate!`,
-        expressive: `A warm blanket would make me feel like royalty right now! (smiles) Thank you so much.`,
+        expressive: `A warm blanket would make me feel like royalty right now! Thank you so much.`,
         detected_emotion: 'Playful Warmth Request',
         tone_used: tone,
         model_used: 'gemini-3.6-flash-client',
@@ -446,7 +446,7 @@ export function expandIntentClient({
     if (kwLower.includes('birthday') || kwLower.includes('leo')) {
       if (toneKey === 'playful') {
         return {
-          natural: `Happy birthday, kiddo! (laughs) Look at you growing so fast—pretty soon you're going to be taller than grandpa! Come give me a big high-five!`,
+          natural: `Happy birthday, kiddo! Look at you growing so fast—pretty soon you're going to be taller than grandpa! Come give me a big high-five!`,
           concise: `Happy birthday, Leo! Save a big slice of chocolate cake for grandpa!`,
           expressive: `Happy birthday, my little champion! You're growing up way too fast, but you'll always be my favorite little troublemaker!`,
           detected_emotion: 'Playful Grandparent Joy',
@@ -480,9 +480,9 @@ export function expandIntentClient({
     }
     if (toneKey === 'playful') {
       return {
-        natural: `Come over here and hold my hand, ${partnerLabel}! (laughs) You know you're still my absolute favorite person in the world!`,
+        natural: `Come over here and hold my hand, ${partnerLabel}! You know you're still my absolute favorite person in the world!`,
         concise: `Give me a hug! Best family ever.`,
-        expressive: `Look at you looking so wonderful! (smiles) Come sit close and tell me everything about your day!`,
+        expressive: `Look at you looking so wonderful! Come sit close and tell me everything about your day!`,
         detected_emotion: 'Playful Affection',
         tone_used: tone,
         model_used: 'gemini-3.6-flash-client',
@@ -514,7 +514,7 @@ export function expandIntentClient({
       };
     }
     return {
-      natural: `Hey everyone! (laughs) Stop looking so worried over there! My voice might be digital today, but you all know I still tell the best jokes at this dinner table!`,
+      natural: `Hey everyone! Come on now, stop looking so worried over there! My voice might be digital today, but you all know I still tell the best jokes at this dinner table!`,
       concise: `Don’t look so worried, I still have the best jokes at this table!`,
       expressive: `You all look wonderful tonight! Don’t look so serious—I still have plenty of jokes saved up for whenever you are ready to laugh!`,
       detected_emotion: 'Lively Table Humor',
@@ -601,17 +601,17 @@ export function expandIntentClient({
   if (toneKey === 'playful') {
     return pickVariant([
       {
-        natural: `Hey ${partnerLabel}! (smiles) Whenever you have a second, could we check on ${cleanConcepts}? You know it'll make my whole day!`,
+        natural: `Hey ${partnerLabel}! Whenever you have a second, could we check on ${cleanConcepts}? You know it'll make my whole day!`,
         concise: `Time for ${cleanConcepts}! Best team ever.`,
-        expressive: `Well hello there! (chuckles) If you could help me with ${cleanConcepts}, I promise to give you my biggest smile today!`,
+        expressive: `Well hello there! If you could help me with ${cleanConcepts}, I promise to give you my biggest smile today!`,
         detected_emotion: 'Playful Dialogue',
         tone_used: tone,
         model_used: 'gemini-3.6-flash-client',
       },
       {
-        natural: `Well hello ${partnerLabel}! (chuckles) If you have a free minute, could we tackle ${cleanConcepts}? Best team in the house!`,
+        natural: `Well hello ${partnerLabel}! If you have a free minute, could we tackle ${cleanConcepts}? Best team in the house!`,
         concise: `Ready for ${cleanConcepts}? Let's do it!`,
-        expressive: `Hey ${partnerLabel}! (laughs) You're my favorite superhero around here, especially if we can sort out ${cleanConcepts}!`,
+        expressive: `Hey ${partnerLabel}! You're my favorite superhero around here, especially if we can sort out ${cleanConcepts}!`,
         detected_emotion: 'Humorous Bedside Banter',
         tone_used: tone,
         model_used: 'gemini-3.6-flash-client',

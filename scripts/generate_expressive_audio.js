@@ -32,9 +32,9 @@ const SCENARIOS = [
   {
     filename: 'scenario_family_humor.mp3',
     voiceId: 'CwhRBWXzGAHq8TQ4Fs17', // Roger (Friendly middle-aged male)
-    // Cheerful, laughing cadence and lively dinner banter
-    text: "Hey everyone! (laughs) Stop looking so worried over there! My voice might be digital today, but you all know I still tell the best jokes at this dinner table!",
-    voiceSettings: { stability: 0.22, similarity_boost: 0.75, style: 0.80, use_speaker_boost: true }
+    // Cheerful, natural cadence and lively dinner banter without awkward stage directions
+    text: "Hey everyone! Come on now, stop looking so worried over there! My voice might be digital today, but you all know I still tell the best jokes at this dinner table!",
+    voiceSettings: { stability: 0.30, similarity_boost: 0.80, style: 0.65, use_speaker_boost: true }
   },
   {
     filename: 'scenario_daily_checkin.mp3',
@@ -49,9 +49,10 @@ async function generateAudio() {
   const publicDir = path.join(__dirname, '../public/audio');
   const distDir = path.join(__dirname, '../dist/audio');
   fs.mkdirSync(publicDir, { recursive: true });
-  fs.mkdirSync(distDir, { recursive: true });
+  const targetFilter = process.argv[2];
+  const listToGenerate = targetFilter ? SCENARIOS.filter(s => s.filename.includes(targetFilter)) : SCENARIOS;
 
-  for (const s of SCENARIOS) {
+  for (const s of listToGenerate) {
     console.log(`Generating expressive audio for ${s.filename}...`);
     try {
       const url = `https://api.elevenlabs.io/v1/text-to-speech/${s.voiceId}?optimize_streaming_latency=3&output_format=mp3_44100_128`;

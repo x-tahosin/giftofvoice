@@ -22,9 +22,9 @@ const STEPPER_TONE_EXAMPLES = {
     label: 'Playful & Humorous',
     emoji: '😄',
     desc: 'Spirited witty banter to break the clinical silence and bring a smile',
-    natural: "(chuckles) Thanks for the blanket, Sarah! Though I'm pretty sure you're secretly trying to wrap me up like a cozy burrito!",
-    concise: "(laughs) Thanks for the blanket—you're officially my favorite warmth-delivery specialist on this floor!",
-    expressive: '(chuckles) Ah, the legendary blanket service strikes again... thanks a bunch for saving me from turning into an ice cube!',
+    natural: "Thanks for the blanket, Sarah! Though I'm pretty sure you're secretly trying to wrap me up like a cozy burrito!",
+    concise: "Thanks for the blanket—you're officially my favorite warmth-delivery specialist on this floor!",
+    expressive: 'Ah, the legendary blanket service strikes again... thanks a bunch for saving me from turning into an ice cube!',
   },
   urgent: {
     label: 'Urgent & Direct',

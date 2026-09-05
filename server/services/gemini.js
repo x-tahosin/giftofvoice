@@ -90,9 +90,9 @@ function getDeterministicFallback(keywords, tone = 'grateful', recipient = 'nurs
     }
     if (toneKey === 'playful') {
       return {
-        natural: `Thanks for the warm blanket, ${partnerLabel}! (chuckles) Though I think you're secretly trying to wrap me up like a cozy hospital burrito!`,
+        natural: `Thanks for the warm blanket, ${partnerLabel}! Though I think you're secretly trying to wrap me up like a cozy hospital burrito!`,
         concise: `Thanks for the cozy blanket, ${partnerLabel}! Best burrito ever.`,
-        expressive: `Ah ${partnerLabel}, you saved my life with this blanket! (laughs) Now if only it came with room service and dessert!`,
+        expressive: `Ah ${partnerLabel}, you saved my life with this blanket! Now if only it came with room service and dessert!`,
         detected_emotion: 'Playful Warmth & Humor',
         tone_used: tone,
         model_used: 'fallback-deterministic',
@@ -152,9 +152,9 @@ function getDeterministicFallback(keywords, tone = 'grateful', recipient = 'nurs
     }
     if (toneKey === 'playful') {
       return {
-        natural: `Thank you so much, ${partnerLabel}! (smiles) You take such wonderful care of me, I'm definitely giving you a five-star review today!`,
+        natural: `Thank you so much, ${partnerLabel}! You take such wonderful care of me, I'm definitely giving you a five-star review today!`,
         concise: `Thank you so much! You're officially the MVP today.`,
-        expressive: `Thank you so much! (laughs) Even when I'm being a handful, you still treat me with the biggest smile in the room!`,
+        expressive: `Thank you so much! Even when I'm being a handful, you still treat me with the biggest smile in the room!`,
         detected_emotion: 'Playful Appreciation & Cheer',
         tone_used: tone,
         model_used: 'fallback-deterministic',
@@ -305,7 +305,7 @@ function getDeterministicFallback(keywords, tone = 'grateful', recipient = 'nurs
     if (kwLower.includes('birthday') || kwLower.includes('leo')) {
       if (toneKey === 'playful') {
         return {
-          natural: `Happy birthday, kiddo! (laughs) Look at you growing so fast—pretty soon you're going to be taller than grandpa! Come give me a big high-five!`,
+          natural: `Happy birthday, kiddo! Look at you growing so fast—pretty soon you're going to be taller than grandpa! Come give me a big high-five!`,
           concise: `Happy birthday, Leo! Save a big slice of chocolate cake for grandpa!`,
           expressive: `Happy birthday, my little champion! You're growing up way too fast, but you'll always be my favorite little troublemaker!`,
           detected_emotion: 'Playful Grandparent Joy',
@@ -335,7 +335,7 @@ function getDeterministicFallback(keywords, tone = 'grateful', recipient = 'nurs
   // 9. Humor & Social
   if (hasHumor) {
     return {
-      natural: `Hey everyone! (laughs) Stop looking so worried over there! My voice might be digital today, but you all know I still tell the best jokes at this dinner table!`,
+      natural: `Hey everyone! Come on now, stop looking so worried over there! My voice might be digital today, but you all know I still tell the best jokes at this dinner table!`,
       concise: `Don’t look so worried, I still have the best jokes at this table!`,
       expressive: `You all look wonderful tonight! Don’t look so serious—I still have plenty of jokes saved up for whenever you are ready to laugh!`,
       detected_emotion: 'Lively Table Humor',
@@ -420,7 +420,7 @@ export async function expandIntent({
   const toneDirectives = {
     grateful: 'TONE: HEARTFELT & GRATEFUL. Sincere, heartfelt bedside intimacy. Express deep thankfulness and appreciation that touches the caregiver or loved one.',
     loving: 'TONE: LOVING & TENDER. Deep family affection, gentle terms of endearment ("my sweet", "darling", "bless you"), emotional pride, tender warmth.',
-    playful: 'TONE: PLAYFUL & HUMOROUS. Lively wit, cheerful teasing, warm laughter. MUST include a playful chuckle like "(chuckles)" or "(laughs)" and a witty, spirited remark to bring a smile.',
+    playful: 'TONE: PLAYFUL & HUMOROUS. Lively wit, cheerful teasing, warm conversational banter. Speak with spirited humor to bring a smile. IMPORTANT: Never output stage directions or parenthetical sound effects like "(laughs)" or "(chuckles)" because Text-to-Speech models pronounce them out loud.',
     peaceful: 'TONE: CALM & PEACEFUL. Serene, quiet, soft-spoken, relaxing cadence. Brings reassuring tranquility and comfort.',
     urgent: 'TONE: URGENT & DIRECT. Immediate medical necessity or physical discomfort. Clear, direct, prioritized request without sounding panic-stricken.',
   };
@@ -439,7 +439,7 @@ ${selectedDirective}
 
 CRITICAL RULES FOR EMOTIONAL TONE ACCURACY:
 1. The 3 variations MUST unmistakably express the chosen tone: "${tone}".
-   - If PLAYFUL: inject humor, playful teasing, and a chuckle "(chuckles)".
+   - If PLAYFUL: inject wit, playful teasing, and warm conversational banter (never use parenthetical stage directions like "(chuckles)" or "(laughs)").
    - If LOVING: speak with tender intimate family affection and warmth.
    - If URGENT: make it clear, immediate, and direct without beating around the bush.
    - If GRATEFUL: express sincere bedside gratitude that touches the soul.
