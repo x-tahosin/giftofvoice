@@ -446,6 +446,11 @@ CRITICAL RULES FOR EMOTIONAL TONE ACCURACY:
 2. Speak strictly in the first-person ("I") of an actual human being talking to a loved one or caregiver.
 3. Natural conversational pauses ("...", dashes) for human breathing.
 4. Exactly 1-2 spoken sentences ready for ElevenLabs high-fidelity emotional voice synthesis.
+5. DEEP INTENT UNDERSTANDING OVER LITERAL SLOTTING:
+   - DO NOT literally interpolate concepts into awkward templates like 'help me with [concept]'.
+   - If the concept expresses gratitude ('Thank you so much', 'Deeply blessed', 'Your kindness warms me'), formulate heartfelt spoken appreciation and blessings directly to the recipient, NOT a request for help.
+   - If the concept expresses physical needs (water, blanket, posture, lighting), formulate a natural, considerate, and conversational bedside request.
+   - If the concept expresses humor or love, make it lively, warm, and natural dialogue.
 
 Respond ONLY with valid JSON in this exact structure:
 {
